@@ -15,7 +15,7 @@ function Dado(){
         switch(this.type){
             case 1:
                 fill(0,0,0);
-                ellipse((this.x+this.lado)/2, (this.y+this.lado)/2, 10, 10);
+                ellipse(this.x+this.lado*0.5, this.y+this.lado*0.5, 10, 10);
                 break;
             case 2:
                 fill(0,0,0);
@@ -60,15 +60,23 @@ function Dado(){
 
     }
 
-    this.shuffle = function(){
-        console.log("IN");
-        for(i=0;i<10;i++){
-            setTimeout(function(){
-                this.type=random(1,6);
-                this.show();
-            }, 300);
-            
-
-        }
+    this.v = function(){
+        this.type = ceil(random(0,6));
+        console.log(this.type);
+//        for(i=0;i<10;i++){
+//            setTimeout(function(){
+//                this.type=random(1,6);
+//                this.show();
+//            }, 300);
+//            
+//
+//        }
+    }
+    
+    this.shufflePos = function(){
+        times = 100;
+        speed = 50;
+        this.xdirection = random(-1,1);
+        this.ydirection = random(-1,1);
     }
 }

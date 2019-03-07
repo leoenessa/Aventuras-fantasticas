@@ -1,0 +1,126 @@
+{
+  "livro":"Cidadela do Caos",
+  "numero_paginas":"280",
+  "pagina":[
+    {
+      "id":"1",
+      "titulo":"",
+      "texto":"O sol se põe. Enquanto o crepúsculo se transforma em escuridão, você começa a subir a colina na direção da ameaçadora forma que se desenha contra o céu noturno. A Cidadela fica a menos de uma hora de escalada. A uma certa distância de seus muros, você pára para descansar - um erro, uma vez que, dessa posição, ela parece um espectro medonho do qual não se pode escapar. Os cabelos no seu pescoço se arrepiam enquanto você a observa. Mas você se envergonha de seus medos. Com inflexível decisão, você marcha adiante na direção do portão principal, onde você sabe que encontrará guardas à sua espera. Você considera suas opções.Já pensou em se apresentar como um especialista em plantas medicinais que veio tratar de um guarda com febre. Poderia também se dizer um comerciante ou artesão - talvez um carpinteiro. Poderia até mesmo ser um nômade que buscasse abrigo para a noite. Enquanto você pondera as possibilidades, e as histórias que terá que contar aos guardas, acaba chegando à trilha principal que conduz aos portões. Duas lanternas brilham em cada um dos lados da porta levadiça. Você ouve grunhidos abafados ao se aproximar, e vê duas criaturas de aparência absurda. Do lado esquerdo está uma criatura horrível, com a cabeça de um cachorro e o corpo de um grande macaco, flexionando seus braços fortíssimos. Do outro lado, encontra-se de fato o seu oposto, com a cabeça de um macaco no corpo de um cachorro grande. Este último guarda se aproxima nas suas quatro patas. Pára a alguns metros de distância diante de você, ergue-se sobre as patas traseiras e dirige a palavra a você. Por qual das histórias você optará?",
+      "imagem":"1.jpg",
+      "efeitos":"neve",
+      "questoes":[
+        {
+          "mensagem":"Você se apresentará como um especialista em plantas medicinais?",
+          "destino":"261"
+        },
+        {
+          "mensagem":"Você dirá que é um comerciante?",
+          "destino":"230"
+        },
+        {
+          "mensagem":"Você pedirá abrigo para pernoitar?",
+          "destino":"20"
+        }
+      ]
+    },
+    
+    {
+      "id":"2",
+      "titulo":"",
+      "texto":"Um pouco adiante na passagem há uma porta do lado direito. Esta porta está coberta por estranhos caracteres, em uma linguagem que você não compreende.",
+      "imagem":"2.jpg",
+      "efeitos":"neve",
+      "questoes":[
+        {
+          "mensagem":"Você tentará abrir a porta.",
+          "destino":"142"
+        },
+        {
+          "mensagem":"ou continuará seguindo a passagem?",
+          "destino":"343"
+        }
+      ]
+    },
+    
+    {
+      "id":"3",
+      "titulo":"",
+      "texto":"O Macaco-Cachorro pede para ver as suas ervas. Por sorte, você tinha apanhado alguns punhados de ervas no caminho, e você mostra isso a eles. Inclinando a cabeça para um lado, a criatura olha para você com desconfiança. Pergunta a você então o nome do guarda que você veio tratar uma coisa que não estava nos seus planos! Você pensa rapidamente em um nome para enganar a criatura:",
+      "imagem":"3.jpg",
+      "efeitos":"neve",
+      "questoes":[
+        {
+          "mensagem":"Kylltrog.",
+          "destino":"81"
+        },
+        {
+          "mensagem":"Pincus",
+          "destino":"175"
+        },
+        {
+          "mensagem":"Blag",
+          "destino":"394"
+        }
+      ]
+    },
+    
+    {
+      "id":"4",
+      "titulo":"",
+      "texto":"O Macaco-Cachorro diz que não é permitido a ninguém entrar na Torre Negra depois que anoitece você terá que procurar abrigo em outro lugar.",
+      "imagem":"4.jpg",
+      "efeitos":"neve",
+      "questoes":[
+        {
+          "mensagem":"Você pode se resignar a lutar.",
+          "destino":"288"
+        },
+        {
+          "mensagem":"Ou pode pegar uma pedra e lançar um Encanto do Ouro dos Tolos sobre ela, oferecendo-a como uma pepita de ouro, para suborná-los, convencendo-os a deixar você entrar",
+          "destino":"96"
+        },
+        {
+          "mensagem":"Blag",
+          "destino":"394"
+        }
+      ]
+    },
+    
+    {
+      "id":"5",
+      "titulo":"",
+      "texto":"Veio ganhar algum dinheiro, né? diz o Macaco-Cachorro.Bem, você pode dividir um pouco dos seus lucros conosco!",
+      "imagem":"5.jpg",
+      "efeitos":"neve",
+      "questoes":[
+        {
+          "mensagem":"Como você não tem nada para oferecer a eles, pode tirar uma pedra de sua bolsa e lançar um Encanto do Ouro dos Tolos sobre ela, oferecendo uma pepita de ouro a eles.",
+          "destino":"96"
+        },
+        {
+          "mensagem":"ou pode preparar-se para a batalha",
+          "destino":"288"
+        }
+      ]
+    },
+    
+    {
+      "id":"6",
+      "titulo":"",
+      "texto":"O Macaco-Cachorro diz que não é permitido a ninguém entrar na Torre Negra depois que anoitece - você terá que procurar abrigo em outro lugar.",
+      "imagem":"2.jpg",
+      "efeitos":"neve",
+      "questoes":[
+        {
+          "mensagem":"Você pode se resignar a lutar.",
+          "destino":"288"
+        },
+        {
+          "mensagem":"Ou pode pegar uma pedra e lançar um Encanto do Ouro dos Tolos sobre ela, oferecendo-a como uma pepita de ouro, para suborná-los, convencendo-os a deixar você entrar",
+          "destino":"96"
+        }
+      ]
+    }
+    
+  ]
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aventuras Fantásticas - A Cidadela do Caos</title>
+  <link rel="stylesheet" href="estilo.css">
+  <script src="jquery-3.3.1.min.js"></script>
+  <script src="p5.js"></script>
+  <script src="p5.dom.js"></script>
+  <script src="dado.js"></script>
+  <script src="sketch.js"></script>
+</head>
+
+<body>
+ 
+<!--
+    <div class="area">
+        <section class="area-book">
+            <div class="opaco"></div>
+            <div class="conteudo">
+                <p class="texto">Conteudo exemplo</p>
+                <div class="questoes">
+
+                </div>
+            </div>
+        </section>
+        <div class="area-img">
+            <div class="opaco"></div>
+            <img id="painel-img">
+        
+        </div>
+    </div>
+-->
+    
+    
+    <div id="wrapper">
+    <div id="container">
+
+        <section class="open-book">
+            <header>
+                <h1>Book Layout</h1>
+                <h6>Erin E. Sullivan</h6>
+            </header>
+            <article>
+                <div class="pagina-texto">
+                    <p class="texto">
+                    </p>
+                    <ul class="opcoes">
+                        
+                    </ul>
+                </div>
+                <div class="pagina-img">
+                    <img src="" id="painel-img">
+                </div>
+            </article>
+            <footer>
+                <ol id="page-numbers">
+                    <li>1</li>
+                    <li>2</li>
+                </ol>
+            </footer>
+        </section>
+
+    </div>
+</div>
+    <script>
+        $.getJSON('https://api.myjson.com/bins/m67ji', function(data){
+            livrocompleto = data;
+            pagina_start = 1;
+            var teste;
+                        
+            atualizaPagina(retornaPagina(pagina_start));
+        }),'jsonp';   
+        
+//        function retornaPagina(livro,pagina){
+//            for(i=0;i<=livro.numero_paginas;i++){
+//                if(pagina==livro.pagina[i].id){
+//                    return{"texto":livro.pagina[i].texto,"questoes":livro.pagina[i].questoes};
+//                }
+//            }
+//        }
+        
+        function retornaPagina(page){
+            return(livrocompleto.pagina[page-1]);
+        }
+        
+        function atualizaPagina(page){
+            $(".texto").text(page.texto);
+            
+            if(page.questoes.length>0){
+                var pai = $(".open-book .pagina-texto .opcoes");
+                pai.empty();
+                
+                for(i=0;i<page.questoes.length;i++){
+                    var filho = document.createElement('l1');
+                    filho.className += "questao";
+                    $(filho).attr("data-destino",page.questoes[i].destino);
+                    filho.textContent = page.questoes[i].mensagem;
+                    pai.append(filho);
+                }
+            }
+            
+            if(page.imagem!=null){
+                $("#painel-img").attr("src","img/"+page.imagem);
+            }
+            else{
+                $("#painel-img").attr("src","img/1.jpg");
+            }
+        }
+        
+//        function atualizaPagina(gotopage){
+//            var atualizada = livrocompleto.pagina[gotopage-1];
+//            $(".texto").text = atualizada.texto;
+//        }
+        
+        $(document).on("click", ".questao", function(){
+            var vapara = $(this).attr("data-destino");
+            console.log(vapara);
+            atualizaPagina(retornaPagina(vapara));
+            
+        });
+        
+    </script>
+    
+</body>
+</html>
