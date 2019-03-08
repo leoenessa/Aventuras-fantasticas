@@ -60,7 +60,7 @@ function Dado(){
 
     }
 
-    this.v = function(){
+    this.shuffle = function(){
         this.type = ceil(random(0,6));
         console.log(this.type);
 //        for(i=0;i<10;i++){
