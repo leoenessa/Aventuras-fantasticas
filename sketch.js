@@ -2,9 +2,12 @@ var dados = [];
 var pipefile = [];
 
 function setup() {
-    createCanvas(800, 600);
+    var canvas = createCanvas(640, 480);
+    canvas.parent('area-sketch');
+    
     button = createButton('Rolar dado');
-    button.position(1, 1);
+    button.position(width, height);
+    button.parent('area-sketch');
     button.mouseClicked(rolarDado);
 }
 

@@ -62,9 +62,35 @@
             </footer>
         </section>
 
+
+        <div class="combate-container">
+            <h1 class="token-turno">Sua vez</h1>
+            <div class="ficha-heroi">
+                <h3 class="heroi-nome">Alucard</h3>
+                <ul class="heroi-status">
+                    <li class="heroi-energia">Energia<span class="box">12</span></li>
+                    <li class="heroi-habilidade">Habilidade<span class="box">12</span></li>
+                    <li class="heroi-sorte">Sorte<span class="box">12</span></li>
+                </ul>
+            </div>
+            <div id="area-sketch"></div>
+            <div class="ficha-inimigo">
+                <h3 class="inimigo-nome">Cerberus</h3>
+                <ul class="inimigo-status">
+                    <li class="inimigo-energia">Energia<span class="box">12</span></li>
+                    <li class="inimigo-habilidade">Habilidade<span class="box">12</span></li>
+                    <li class="inimigo-sorte">Sorte<span class="box">12</span></li>
+                </ul>
+            </div>
+
+        </div>
+
     </div>
 </div>
     <script>
+
+        var char_status = {nome:"Alucard",energia:12,habilidade:7,sorte:6};
+
         $.getJSON('https://api.myjson.com/bins/10q8qq', function(data){
             livrocompleto = data;
             pagina_start = 1;
@@ -102,14 +128,14 @@
             
             if(page.combate){
                 console.log("Prepare for battle!");
-                $("canvas").css("display","block");
+                $(".combate-container").css("display","flex");
                 limpaDados();
                 criaDados(5);
                 rolarDado();
                 pipefile.push("15");
             }
             else{
-                $("canvas").css("display","none");
+                $(".combate-container").css("display","none");
             }
         }
         
