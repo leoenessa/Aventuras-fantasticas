@@ -313,6 +313,8 @@ canvas{
     top: 10%;
     left: 30%;
     z-index: 2;
+    display: none;
+    box-shadow:0 0 0 9999px rgba(0,0,0,0.5);
 }
 
 

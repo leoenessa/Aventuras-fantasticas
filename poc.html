@@ -65,22 +65,14 @@
     </div>
 </div>
     <script>
-        $.getJSON('https://api.myjson.com/bins/m67ji', function(data){
+        $.getJSON('https://api.myjson.com/bins/10q8qq', function(data){
             livrocompleto = data;
             pagina_start = 1;
             var teste;
                         
             atualizaPagina(retornaPagina(pagina_start));
         }),'jsonp';   
-        
-//        function retornaPagina(livro,pagina){
-//            for(i=0;i<=livro.numero_paginas;i++){
-//                if(pagina==livro.pagina[i].id){
-//                    return{"texto":livro.pagina[i].texto,"questoes":livro.pagina[i].questoes};
-//                }
-//            }
-//        }
-        
+             
         function retornaPagina(page){
             return(livrocompleto.pagina[page-1]);
         }
@@ -106,6 +98,18 @@
             }
             else{
                 $("#painel-img").attr("src","img/1.jpg");
+            }
+            
+            if(page.combate){
+                console.log("Prepare for battle!");
+                $("canvas").css("display","block");
+                limpaDados();
+                criaDados(5);
+                rolarDado();
+                pipefile.push("15");
+            }
+            else{
+                $("canvas").css("display","none");
             }
         }
         
