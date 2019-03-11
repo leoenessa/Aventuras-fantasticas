@@ -1,6 +1,6 @@
 function Dado(){   
     
-    this.lado = 100;
+    this.lado = 80;
     this.x = random(1,width-this.lado);
     this.y = random(1,height-this.lado);
 
@@ -62,15 +62,6 @@ function Dado(){
 
     this.shuffle = function(){
         this.type = ceil(random(0,6));
-        console.log(this.type);
-//        for(i=0;i<10;i++){
-//            setTimeout(function(){
-//                this.type=random(1,6);
-//                this.show();
-//            }, 300);
-//            
-//
-//        }
     }
     
     this.shufflePos = function(){
@@ -78,5 +69,9 @@ function Dado(){
         speed = 50;
         this.xdirection = random(-1,1);
         this.ydirection = random(-1,1);
+    }
+
+    this.getValor = function(){
+        return(this.type);
     }
 }

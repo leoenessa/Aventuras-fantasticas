@@ -49,20 +49,7 @@
       "imagem":"3.jpg",
       "efeitos":"neve",
       "combate":"true",
-      "questoes":[
-        {
-          "mensagem":"Kylltrog.",
-          "destino":"1"
-        },
-        {
-          "mensagem":"Pincus",
-          "destino":"3"
-        },
-        {
-          "mensagem":"Blag",
-          "destino":"4"
-        }
-      ]
+      "pos_combate":"4"
     },
     
     {

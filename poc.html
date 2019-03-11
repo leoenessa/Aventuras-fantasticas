@@ -13,85 +13,64 @@
 </head>
 
 <body>
- 
-<!--
-    <div class="area">
-        <section class="area-book">
-            <div class="opaco"></div>
-            <div class="conteudo">
-                <p class="texto">Conteudo exemplo</p>
-                <div class="questoes">
-
-                </div>
-            </div>
-        </section>
-        <div class="area-img">
-            <div class="opaco"></div>
-            <img id="painel-img">
-        
-        </div>
-    </div>
--->
-    
-    
     <div id="wrapper">
-    <div id="container">
+        <div id="container">
+            <section class="open-book">
+                <header>
+                    <h1>Book Layout</h1>
+                    <h6>Erin E. Sullivan</h6>
+                </header>
+                <article>
+                    <div class="pagina-texto">
+                        <p class="texto">
+                        </p>
+                        <ul class="opcoes">
+                            
+                        </ul>
+                    </div>
+                    <div class="pagina-img">
+                        <img src="" id="painel-img">
+                    </div>
+                </article>
+                <footer>
+                    <ol id="page-numbers">
+                        <li>1</li>
+                        <li>2</li>
+                    </ol>
+                </footer>
+            </section>
 
-        <section class="open-book">
-            <header>
-                <h1>Book Layout</h1>
-                <h6>Erin E. Sullivan</h6>
-            </header>
-            <article>
-                <div class="pagina-texto">
-                    <p class="texto">
-                    </p>
-                    <ul class="opcoes">
-                        
+            <div class="combate-container">
+                <h1 class="token-turno">Sua vez</h1>
+                <div class="ficha-heroi">
+                    <h3 class="heroi-nome">Alucard</h3>
+                    <ul class="heroi-status">
+                        <li class="heroi-energia">Energia<span class="box">12</span></li>
+                        <li class="heroi-habilidade">Habilidade<span class="box">12</span></li>
+                        <li class="heroi-sorte">Sorte<span class="box">12</span></li>
                     </ul>
                 </div>
-                <div class="pagina-img">
-                    <img src="" id="painel-img">
+                <div id="area-sketch"></div>
+                <div class="ficha-inimigo">
+                    <h3 class="inimigo-nome">Cerberus</h3>
+                    <ul class="inimigo-status">
+                        <li class="inimigo-energia">Energia<span class="box">12</span></li>
+                        <li class="inimigo-habilidade">Habilidade<span class="box">12</span></li>
+                        <li class="inimigo-sorte">Sorte<span class="box">12</span></li>
+                    </ul>
                 </div>
-            </article>
-            <footer>
-                <ol id="page-numbers">
-                    <li>1</li>
-                    <li>2</li>
-                </ol>
-            </footer>
-        </section>
-
-
-        <div class="combate-container">
-            <h1 class="token-turno">Sua vez</h1>
-            <div class="ficha-heroi">
-                <h3 class="heroi-nome">Alucard</h3>
-                <ul class="heroi-status">
-                    <li class="heroi-energia">Energia<span class="box">12</span></li>
-                    <li class="heroi-habilidade">Habilidade<span class="box">12</span></li>
-                    <li class="heroi-sorte">Sorte<span class="box">12</span></li>
-                </ul>
             </div>
-            <div id="area-sketch"></div>
-            <div class="ficha-inimigo">
-                <h3 class="inimigo-nome">Cerberus</h3>
-                <ul class="inimigo-status">
-                    <li class="inimigo-energia">Energia<span class="box">12</span></li>
-                    <li class="inimigo-habilidade">Habilidade<span class="box">12</span></li>
-                    <li class="inimigo-sorte">Sorte<span class="box">12</span></li>
-                </ul>
-            </div>
-
         </div>
-
     </div>
-</div>
     <script>
 
-        var char_status = {nome:"Alucard",energia:12,habilidade:7,sorte:6};
+        var hero_status = {nome:"Alucard",energia:12,habilidade:7,sorte:6};
+        var enemy_status = {nome:"Cerberus",energia:12,habilidade:4,sorte:6};
+        var hero_turn = true;
+        var poder_ataque_hero = 0;
+        var poder_ataque_enemy = 0;
 
-        $.getJSON('https://api.myjson.com/bins/10q8qq', function(data){
+        $.getJSON('https://api.myjson.com/bins/11jpp6', function(data){
             livrocompleto = data;
             pagina_start = 1;
             var teste;
@@ -102,20 +81,76 @@
         function retornaPagina(page){
             return(livrocompleto.pagina[page-1]);
         }
+
+        function combate(irpara){
+
+            limpaDados();
+            limpaTela();
+            
+            if(hero_turn){
+                if(hero_status.energia>0 && enemy_status.energia>0){
+                    criaDados(2);
+                    poder_ataque_hero = rolaDado();
+                    hero_turn = false;
+                    combate();
+                }
+                else{
+                    console.log("ACABOU A LUTA");
+                    $(".combate-container").css("display","none");
+                    atualizaPagina(irpara);
+                    hero_turn = true;
+                    enemy_status.energia=12;
+                    return true;
+                }    
+            }
+            else{
+                criaDados(2);
+                poder_ataque_enemy = rolaDado();
+                if(poder_ataque_hero>poder_ataque_enemy){
+                    console.log("HERÓI");
+                    enemy_status.energia-=2;
+                    atualizaFichas();
+                }
+                else{
+                    console.log("MONSTRO");
+                    hero_status.energia-=2;
+                    atualizaFichas();
+                }
+
+                console.log("Vida HERÓI:"+hero_status.energia+"\nVida MONSTRO:"+enemy_status.energia);
+
+                hero_turn = true;
+            }
+        }
+
+        function atualizaFichas(){
+            $(".heroi-nome").text(hero_status.nome);
+            $(".heroi-status .heroi-energia .box").text(hero_status.energia);
+            $(".heroi-status .heroi-habilidade .box").text(hero_status.habilidade);
+            $(".heroi-status .heroi-sorte .box").text(hero_status.sorte);
+
+            $(".inimigo-nome").text(enemy_status.nome);
+            $(".inimigo-status .inimigo-energia .box").text(enemy_status.energia);
+            $(".inimigo-status .inimigo-habilidade .box").text(enemy_status.habilidade);
+            $(".inimigo-status .inimigo-sorte .box").text(enemy_status.sorte);
+
+        }
         
         function atualizaPagina(page){
             $(".texto").text(page.texto);
             
-            if(page.questoes.length>0){
-                var pai = $(".open-book .pagina-texto .opcoes");
-                pai.empty();
-                
-                for(i=0;i<page.questoes.length;i++){
-                    var filho = document.createElement('l1');
-                    filho.className += "questao";
-                    $(filho).attr("data-destino",page.questoes[i].destino);
-                    filho.textContent = page.questoes[i].mensagem;
-                    pai.append(filho);
+            if(page.questoes){
+                if(page.questoes.length>0){
+                    var pai = $(".open-book .pagina-texto .opcoes");
+                    pai.empty();
+                    
+                    for(i=0;i<page.questoes.length;i++){
+                        var filho = document.createElement('l1');
+                        filho.className += "questao";
+                        $(filho).attr("data-destino",page.questoes[i].destino);
+                        filho.textContent = page.questoes[i].mensagem;
+                        pai.append(filho);
+                    }
                 }
             }
             
@@ -129,21 +164,16 @@
             if(page.combate){
                 console.log("Prepare for battle!");
                 $(".combate-container").css("display","flex");
-                limpaDados();
-                criaDados(5);
-                rolarDado();
-                pipefile.push("15");
+                atualizaFichas();
+                $("#area-sketch button").on('click',function(){                        
+                    combate(page.pos_combate);
+                });
             }
             else{
                 $(".combate-container").css("display","none");
             }
         }
-        
-//        function atualizaPagina(gotopage){
-//            var atualizada = livrocompleto.pagina[gotopage-1];
-//            $(".texto").text = atualizada.texto;
-//        }
-        
+             
         $(document).on("click", ".questao", function(){
             var vapara = $(this).attr("data-destino");
             console.log(vapara);
@@ -152,6 +182,5 @@
         });
         
     </script>
-    
 </body>
 </html>
