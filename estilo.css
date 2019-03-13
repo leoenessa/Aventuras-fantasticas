@@ -383,8 +383,9 @@ body {
     padding: 1em 0;
 }
 
-canvas{
-    /*box-shadow:0 0 0 9999px rgba(0,0,0,0.5);*/
+canvas.tela-efeitos{
+    position: absolute;
+    left: 0;
 }
 
 

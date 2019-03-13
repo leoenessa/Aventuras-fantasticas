@@ -64,7 +64,7 @@
     </div>
     <script>
 
-        var hero_status = {nome:"Alucard",energia:12,habilidade:7,sorte:6};
+        var hero_status = {nome:"Alucard",energia:12,habilidade:9,sorte:6};
         var enemy_status = {nome:"Cerberus",energia:12,habilidade:4,sorte:6};
         var hero_turn = true;
         var poder_ataque_hero = 0;
@@ -84,13 +84,13 @@
 
         function combate(irpara){
 
-            limpaDados();
-            limpaTela();
+            mesa_dados.limpaDados();
+            mesa_dados.limpaTela();
             
             if(hero_turn){
                 if(hero_status.energia>0 && enemy_status.energia>0){
-                    criaDados(2);
-                    poder_ataque_hero = rolaDado();
+                    mesa_dados.criaDados(2);
+                    poder_ataque_hero = mesa_dados.rolaDado();
                     hero_turn = false;
                     combate();
                 }
@@ -104,8 +104,8 @@
                 }    
             }
             else{
-                criaDados(2);
-                poder_ataque_enemy = rolaDado();
+                mesa_dados.criaDados(2);
+                poder_ataque_enemy = mesa_dados.rolaDado();
                 if(poder_ataque_hero>poder_ataque_enemy){
                     console.log("HERÓI");
                     enemy_status.energia-=2;
@@ -114,6 +114,9 @@
                 else{
                     console.log("MONSTRO");
                     hero_status.energia-=2;
+                    $("canvas.tela-efeitos").css("z-index",2);
+                    tela_efeitos.hit();
+                    $("canvas.tela-efeitos").css("z-index",0);
                     atualizaFichas();
                 }
 
