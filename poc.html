@@ -60,6 +60,34 @@
                     </ul>
                 </div>
             </div>
+
+            <div class="selecionar-personagem-container">
+                <h1>Escolha a classe do seu personagem</h1>
+
+                <div class="selecionar-personagem-inner">
+                    <ul class="classes-personagem">
+                        <li class="classe-personagem guerreiro">Guerreiro</li>
+                        <li class="classe-personagem mago">Mago</li>
+                        <li class="classe-personagem clerigo">Clérigo</li>
+                    </ul>
+
+                    <div class="imagem-classe-personagem">
+                        <img src="img/char_warrior.jpg">
+                        <ul class="status-classe-personagem">
+                            <li>Energia</li>
+                            <li>Habilidade</li>
+                            <li>Sorte</li>
+
+                            <ul class="status-magia-classe-personagem">
+                                <li>Ouro dos tolos</li>
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="criar-personagem-container">
+            </div>
         </div>
     </div>
     <script>
@@ -76,7 +104,7 @@
             var teste;
                         
             atualizaPagina(retornaPagina(pagina_start));
-            criaFicha(hero_status);
+            // criaFicha(hero_status);
         }),'jsonp';   
              
         function retornaPagina(page){
@@ -190,6 +218,10 @@
         function criaFicha(status){
             var indice = 1;
             $(".combate-container").css("display","flex");
+            $(".combate-container .ficha-inimigo").css("display","none");
+            $(".combate-container h1.token-turno").text("Crie seu personagem.");
+
+            
             $("#area-sketch button").on('click',function(){                        
                 mesa_dados.limpaDados();
                 mesa_dados.limpaTela();
