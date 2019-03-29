@@ -177,31 +177,77 @@ body{
 .selecionar-personagem-inner{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
-.selecionar-personagem-inner .classes-personagem{
+.selecionar-personagem-inner .selecionar-personagem-classes-personagem{
     list-style: none;
     text-transform: uppercase;
     cursor: pointer;
 }
 
-.selecionar-personagem-inner .classes-personagem li{
+.selecionar-personagem-inner .selecionar-personagem-classes-personagem li{
     margin-bottom: 5px;
 }
 
-.selecionar-personagem-inner .classes-personagem li:hover{
+.selecionar-personagem-inner .selecionar-personagem-classes-personagem li:hover{
     
 }
 
-
-
-.selecionar-personagem-inner .imagem-classe-personagem{
-    width: 225px;
-    height: 225px;
+.selecionar-personagem-inner .lado-direito{
+    display: flex;
+    flex-direction: column;
 }
 
-.selecionar-personagem-inner .imagem-classe-personagem ul{
+
+.selecionar-personagem-inner .selecionar-personagem-imagem-classe{
+    width: 225px;
+    height: 225px;
+    position: relative;
+}
+    
+    .selecionar-personagem-inner .selecionar-personagem-imagem-classe .efeito-top,
+    .selecionar-personagem-inner .selecionar-personagem-imagem-classe .efeito-bottom{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+
+    .selecionar-personagem-inner .selecionar-personagem-imagem-classe .efeito-top:before,
+    .selecionar-personagem-inner .selecionar-personagem-imagem-classe .efeito-top:after,
+    .selecionar-personagem-inner .selecionar-personagem-imagem-classe .efeito-bottom:before,
+    .selecionar-personagem-inner .selecionar-personagem-imagem-classe .efeito-bottom:after{
+        content: " ";
+        position: absolute;
+        width: 35px;
+        height: 35px;
+        background-color: #226666;
+        border-radius: 20px;
+    }
+
+    .selecionar-personagem-inner .selecionar-personagem-imagem-classe .efeito-top:before{
+        top: -10px;
+        left: -10px;
+    }
+
+    .selecionar-personagem-inner .selecionar-personagem-imagem-classe .efeito-top:after{
+        top: -10px;
+        right: -10px;
+    }
+
+    .selecionar-personagem-inner .selecionar-personagem-imagem-classe .efeito-bottom:before{
+        bottom: -10px;
+        left: -10px;
+    }
+
+    .selecionar-personagem-inner .selecionar-personagem-imagem-classe .efeito-bottom:after{
+        bottom: -10px;
+        right: -10px;
+    }
+
+.selecionar-personagem-inner .selecionar-personagem-atributos-container ul{
     list-style: none;
     padding: 0;
 }
