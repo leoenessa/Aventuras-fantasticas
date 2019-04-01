@@ -190,10 +190,6 @@ body{
     margin-bottom: 5px;
 }
 
-.selecionar-personagem-inner .selecionar-personagem-classes-personagem li:hover{
-    
-}
-
 .selecionar-personagem-inner .lado-direito{
     display: flex;
     flex-direction: column;
@@ -204,6 +200,14 @@ body{
     width: 225px;
     height: 225px;
     position: relative;
+}
+
+.selecionar-personagem-inner .selecionar-personagem-imagem-classe img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    overflow: hidden;
 }
     
     .selecionar-personagem-inner .selecionar-personagem-imagem-classe .efeito-top,
@@ -250,6 +254,15 @@ body{
 .selecionar-personagem-inner .selecionar-personagem-atributos-container ul{
     list-style: none;
     padding: 0;
+}
+
+.selecionar-personagem-inner .selecionar-personagem-atributos-container ul li span.attr_valor{
+    margin-left: 50px;
+}
+
+.selecionar-personagem-container .botao-criar-personagem{
+    text-align: center;
+    cursor: pointer;
 }
 
 

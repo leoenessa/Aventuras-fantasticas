@@ -66,9 +66,9 @@
 
                 <div class="selecionar-personagem-inner">
                     <ul class="selecionar-personagem-classes-personagem">
-                        <li class="classe-personagem" data-classe="guerreiro">Guerreiro</li>
-                        <li class="classe-personagem" data-classe="mago">Mago</li>
-                        <li class="classe-personagem" data-classe="clerigo">Clérigo</li>
+                        <li class="classe-personagem" data-classe="0">Guerreiro</li>
+                        <li class="classe-personagem" data-classe="1">Mago</li>
+                        <li class="classe-personagem" data-classe="2">Clérigo</li>
                     </ul>
 
                     <div class="lado-direito">
@@ -79,9 +79,9 @@
                         </div>
                         <div class="selecionar-personagem-atributos-container">
                             <ul class="selecionar-personagem-atributos">
-                                <li class="selecionar-personagem-atributo energia">Energia</li>
-                                <li class="selecionar-personagem-atributo habilidade">Habilidade</li>
-                                <li class="selecionar-personagem-atributo sorte">Sorte</li>
+                                <li class="selecionar-personagem-atributo energia">Energia <span class="attr_valor">X</span></li>
+                                <li class="selecionar-personagem-atributo habilidade">Habilidade <span class="attr_valor">X</span></li>
+                                <li class="selecionar-personagem-atributo sorte">Sorte <span class="attr_valor">X</span></li>
                             </ul>
 
                             <ul class="selecionar-personagem-magias">
@@ -90,8 +90,12 @@
 
                         </div>
                     </div>
-                    
                 </div>
+
+                <div class="botao-criar-personagem">
+                    <h2>Criar personagem</h2>
+                </div>
+
             </div>
 
             <div class="criar-personagem-container">
@@ -103,9 +107,7 @@
         var hero_status = {nome:"Alucard",energia:0,habilidade:0,sorte:0};
         var enemy_status = {nome:"Cerberus",energia:12,habilidade:4,sorte:6};
 
-        var guerreiro_status = {nome:"Guerreiro", energia:12, habilidade:10, sorte:2};
-        var mago_status = {nome:"Mago", energia:8, habilidade:6, sorte:6};
-        var clerigo_status = {nome:"Clérigo", energia:10, habilidade:8, sorte:4};
+        var personagens_status = [ guerreiro_status = {nome:"Guerreiro", energia:12, habilidade:10, sorte:2}, mago_status = {nome:"Mago", energia:8, habilidade:6, sorte:6}, clerigo_status = {nome:"Clérigo", energia:10, habilidade:8, sorte:4}];
 
         var hero_turn = true;
         var poder_ataque_hero = 0;
@@ -120,9 +122,19 @@
                 var tmp_class = $(this).attr("data-classe");
                 atualizaStatusSelPersonagem(tmp_class);
             });
+
+            $(".selecionar-personagem-classes-personagem .classe-personagem").on('click',function(){
+                hero_status = personagens_status[$(this).attr("data-classe")];
+                $(".selecionar-personagem-container").css('display','none');
+            });
+
+            $(".botao-criar-personagem").on('click',function(){
+                $(".selecionar-personagem-container").css("display","none");
+                $(".criar-personagem-container").css("display","block");
+            });
                         
             atualizaPagina(retornaPagina(pagina_start));
-            // criaFicha(hero_status);
+
         }),'jsonp';   
              
         function retornaPagina(page){
@@ -174,15 +186,11 @@
         }
 
         function atualizaStatusSelPersonagem(classe_personagem){
-            $(".selecionar-personagem-imagem-classe .imagem-classe").attr("src","img/char_"+classe_personagem+".jpg");
+            $(".selecionar-personagem-imagem-classe .imagem-classe").attr("src","img/char_"+personagens_status[classe_personagem].nome+".jpg");
 
-            $(".selecionar-personagem-atributo.energia").text(classe_personagem);
-            $(".selecionar-personagem-atributo.habilidade").text(classe_personagem);
-            $(".selecionar-personagem-atributo.sorte").text(classe_personagem);
-        }
-
-        function selectionaPersonagem(status_personagem){
-            hero_status = status_personagem;
+            $(".selecionar-personagem-atributo.energia .attr_valor").text(personagens_status[classe_personagem].energia);
+            $(".selecionar-personagem-atributo.habilidade .attr_valor").text(personagens_status[classe_personagem].habilidade);
+            $(".selecionar-personagem-atributo.sorte .attr_valor").text(personagens_status[classe_personagem].sorte);
         }
 
         function atualizaFichas(){
