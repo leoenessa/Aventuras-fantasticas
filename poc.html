@@ -100,9 +100,18 @@
 
             <div class="criar-personagem-container">
                 <ul class="criar-personagem-status">
-                    <li class="criar-personagem-atributo energia">Energia<span class="attr_valor">X</span><button class="criar-personagem-botao-rolar-dado">Rolar dado</button></li>
-                    <li class="criar-personagem-atributo habilidade">Habilidade<span class="attr_valor">X</span><button class="criar-personagem-botao-rolar-dado">Rolar dado</button></li>
-                    <li class="criar-personagem-atributo sorte">Sorte<span class="attr_valor">X</span><button class="criar-personagem-botao-rolar-dado">Rolar dado</button></li>
+                    <li class="criar-personagem-atributo energia">Energia
+                        <span class="attr_valor energia">X</span>
+                        <button class="criar-personagem-botao-rolar-dado" data-origem="energia">Rolar dado</button>
+                    </li>
+                    <li class="criar-personagem-atributo habilidade">Habilidade
+                        <span class="attr_valor habilidade">X</span>
+                        <button class="criar-personagem-botao-rolar-dado" data-origem="habilidade">Rolar dado</button>
+                    </li>
+                    <li class="criar-personagem-atributo sorte">Sorte
+                        <span class="attr_valor sorte">X</span>
+                        <button class="criar-personagem-botao-rolar-dado" data-origem="sorte">Rolar dado</button>
+                    </li>
                 </ul>
 
                 <fieldset class="criar-personagem-magias">
@@ -150,6 +159,10 @@
             $(".botao-criar-personagem").on('click',function(){
                 $(".selecionar-personagem-container").css("display","none");
                 $(".criar-personagem-container").css("display","block");
+            });
+
+            $("button.criar-personagem-botao-rolar-dado").on('click',function(){
+                $(".combate-container").css("display","flex");
             });
                         
             atualizaPagina(retornaPagina(pagina_start));
