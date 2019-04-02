@@ -265,6 +265,18 @@ body{
     cursor: pointer;
 }
 
+.criar-personagem-container{
+    display: none;
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    top: 10%;
+    left: 20%;
+    background-color: #226666;
+    border: 2px solid #000;
+    z-index: 2;
+    padding: 5px;
+}
 
 /*  -----------====================---------------*/
 
