@@ -27,10 +27,11 @@ var sketch1 = function(p){
                 dados[i].shuffle();
                 total+=dados[i].getValor();
             }
-
+            window.pipe = total;
             return(total);
         }
     };
+
     
     p.limpaDados = function(){
         dados = [];

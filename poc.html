@@ -116,13 +116,15 @@
 
                 <fieldset class="criar-personagem-magias">
                     <legend> Escolha suas magias </legend>
-                    <div>
-                        <input type = "checkbox" id = "codificação" name = "interesse" valor = "codificação">
-                        <label for = "coding"> Ouro dos tolos </label>
-                    </div>
-                    <div>
-                        <input type = "checkbox" id = "música" name = "interesse" valor = "música">
-                        <label for = "music"> Fogo </label>
+                    <div class="lista-magias">
+                        <div>
+                            <input type = "checkbox" id = "codificação" name = "interesse" valor = "codificação">
+                            <label for = "coding"> Ouro dos tolos </label>
+                        </div>
+                        <div>
+                            <input type = "checkbox" id = "música" name = "interesse" valor = "música">
+                            <label for = "music"> Fogo </label>
+                        </div>
                     </div>
                 </fieldset>
 
@@ -140,8 +142,9 @@
         var hero_turn = true;
         var poder_ataque_hero = 0;
         var poder_ataque_enemy = 0;
+        var pipe = 0;
 
-        $.getJSON('https://api.myjson.com/bins/11jpp6', function(data){
+        $.getJSON('https://api.myjson.com/bins/ut85k', function(data){
             livrocompleto = data;
             pagina_start = 1;
             var teste;
@@ -162,15 +165,40 @@
             });
 
             $("button.criar-personagem-botao-rolar-dado").on('click',function(){
+                var attr $(this).attr("data-origem");
+
                 $(".combate-container").css("display","flex");
+                $("#area-sketch button").on('click',function(){ 
+                   
+                    mesa_dados.limpaDados();
+                    mesa_dados.limpaTela();
+                    mesa_dados.criaDados(2);
+                    mesa_dados.rolaDado();                       
+                });
+
             });
                         
             atualizaPagina(retornaPagina(pagina_start));
+            populaMagias();
 
         }),'jsonp';   
              
         function retornaPagina(page){
             return(livrocompleto.pagina[page-1]);
+        }
+
+        function populaMagias(){
+            var pai = $("fieldset.criar-personagem-magias .lista-magias");
+            pai.empty();
+                    
+            for(i=0;i<livrocompleto.magias.length;i++){
+                var filho = "<div><input type = 'checkbox' id = 'magia"+i+
+                            "' name = 'magia"+i+"' valor = '"+livrocompleto.magias[i]+"'>"+
+                            "<label for = 'magia"+i+"'>"+livrocompleto.magias[i]+"</label>"+
+                        "</div>";
+
+                pai.append(filho);
+            }
         }
 
         function combate(irpara){
@@ -270,7 +298,11 @@
                 $(".combate-container").css("display","flex");
                 atualizaFichas();
                 $("#area-sketch button").on('click',function(){                        
-                    combate(page.pos_combate);
+                   mesa_dados.limpaDados();
+                   mesa_dados.limpaTela();
+                   mesa_dados.criaDados(2);
+                   var tt = mesa_dados.rolaDado();
+                   console.log(tt);
                 });
             }
             else{

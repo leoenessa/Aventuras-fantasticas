@@ -1,6 +1,7 @@
 {
   "livro":"Cidadela do Caos",
   "numero_paginas":"280",
+  "magias":["Cópia de criatura","Percepção extra-sensorial","Fogo","Ouro dos tolos","Ilusão","Levitação","Sorte","Escudo","Habilidade","Energia","Força","Fraqueza"],
   "pagina":[
     {
       "id":"1",
