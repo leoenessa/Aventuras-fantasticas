@@ -117,14 +117,7 @@
                 <fieldset class="criar-personagem-magias">
                     <legend> Escolha suas magias </legend>
                     <div class="lista-magias">
-                        <div>
-                            <input type = "checkbox" id = "codificação" name = "interesse" valor = "codificação">
-                            <label for = "coding"> Ouro dos tolos </label>
-                        </div>
-                        <div>
-                            <input type = "checkbox" id = "música" name = "interesse" valor = "música">
-                            <label for = "music"> Fogo </label>
-                        </div>
+                        
                     </div>
                 </fieldset>
 
@@ -133,22 +126,20 @@
         </div>
     </div>
     <script>
-
         var hero_status = {nome:"Alucard",energia:0,habilidade:0,sorte:0};
-        var enemy_status = {nome:"Cerberus",energia:12,habilidade:4,sorte:6};
-
-        var personagens_status = [ guerreiro_status = {nome:"Guerreiro", energia:12, habilidade:10, sorte:2}, mago_status = {nome:"Mago", energia:8, habilidade:6, sorte:6}, clerigo_status = {nome:"Clérigo", energia:10, habilidade:8, sorte:4}];
-
+        var enemy_status = {nome:"Cerberus",energia:12,habilidade:8,sorte:6};
+        var personagens_status = [ guerreiro_status = {nome:"Guerreiro", energia:24, habilidade:10, sorte:7}, mago_status = {nome:"Mago", energia:15, habilidade:7, sorte:11}, clerigo_status = {nome:"Clérigo", energia:19, habilidade:9, sorte:9}];
         var hero_turn = true;
         var poder_ataque_hero = 0;
         var poder_ataque_enemy = 0;
-        var pipe = 0;
+        var max_magias = 3;
 
         $.getJSON('https://api.myjson.com/bins/ut85k', function(data){
             livrocompleto = data;
             pagina_start = 1;
             var teste;
 
+            //SELECIONAR PERSONAGEM
             $(".selecionar-personagem-classes-personagem .classe-personagem").mouseover(function(){
                 var tmp_class = $(this).attr("data-classe");
                 atualizaStatusSelPersonagem(tmp_class);
@@ -159,34 +150,53 @@
                 $(".selecionar-personagem-container").css('display','none');
             });
 
+            //TELA CRIAÇÃO PERSONAGEM
             $(".botao-criar-personagem").on('click',function(){
                 $(".selecionar-personagem-container").css("display","none");
                 $(".criar-personagem-container").css("display","block");
             });
 
+            //LOGICA CRIAÇÃO PERSONAGEM
             $("button.criar-personagem-botao-rolar-dado").on('click',function(){
                 var atributo = $(this).attr("data-origem");
 
                 $(".combate-container").css("display","flex");
+                
                 $("#area-sketch button").on('click',function(){ 
                    
                     mesa_dados.limpaDados();
                     mesa_dados.limpaTela();
                     mesa_dados.criaDados(2);
-                    mesa_dados.rolaDado();                       
-                    $("span.attr_valor."+atributo).text(window.pipe);
-                    window.pipe = 0;
+                    var num_rolado = mesa_dados.rolaDado();
+
+                    if(atributo=='energia' || atributo=='habilidade'){
+                        num_rolado+=12;
+                    }
+                    else if(atributo=='sorte'){
+                        num_rolado+=6;
+                    }
+                    
+                    $(".criar-personagem-atributo span.attr_valor."+atributo).text(num_rolado);
                     $(".combate-container").css("display","none");
+                    atributo = null;
+                    console.log("DENTRO DO COMBATE "+atributo);
+
                 });
                 $(this).css("display","none");
                 
-                
+            });
+
+            $("input[type=checkbox]").on('click',function(){
+                console.log("bip");
+                // if($(".item-magia:checked").length > 2){
+                //     this.checked = false;
+                // }
 
             });
+
                         
             atualizaPagina(retornaPagina(pagina_start));
             populaMagias();
-
         }),'jsonp';   
              
         function retornaPagina(page){
@@ -198,17 +208,15 @@
             pai.empty();
                     
             for(i=0;i<livrocompleto.magias.length;i++){
-                var filho = "<div><input type = 'checkbox' id = 'magia"+i+
+                var filho = "<div><input class='item-magia' type = 'checkbox' id = 'magia"+i+
                             "' name = 'magia"+i+"' valor = '"+livrocompleto.magias[i]+"'>"+
                             "<label for = 'magia"+i+"'>"+livrocompleto.magias[i]+"</label>"+
                         "</div>";
-
                 pai.append(filho);
             }
         }
 
         function combate(irpara){
-
             mesa_dados.limpaDados();
             mesa_dados.limpaTela();
             
@@ -244,16 +252,13 @@
                     $("canvas.tela-efeitos").css("z-index",0);
                     atualizaFichas();
                 }
-
                 console.log("Vida HERÓI:"+hero_status.energia+"\nVida MONSTRO:"+enemy_status.energia);
-
                 hero_turn = true;
             }
         }
 
         function atualizaStatusSelPersonagem(classe_personagem){
             $(".selecionar-personagem-imagem-classe .imagem-classe").attr("src","img/char_"+personagens_status[classe_personagem].nome+".jpg");
-
             $(".selecionar-personagem-atributo.energia .attr_valor").text(personagens_status[classe_personagem].energia);
             $(".selecionar-personagem-atributo.habilidade .attr_valor").text(personagens_status[classe_personagem].habilidade);
             $(".selecionar-personagem-atributo.sorte .attr_valor").text(personagens_status[classe_personagem].sorte);
@@ -264,12 +269,10 @@
             $(".heroi-status .heroi-energia .box").text(hero_status.energia);
             $(".heroi-status .heroi-habilidade .box").text(hero_status.habilidade);
             $(".heroi-status .heroi-sorte .box").text(hero_status.sorte);
-
             $(".inimigo-nome").text(enemy_status.nome);
             $(".inimigo-status .inimigo-energia .box").text(enemy_status.energia);
             $(".inimigo-status .inimigo-habilidade .box").text(enemy_status.habilidade);
             $(".inimigo-status .inimigo-sorte .box").text(enemy_status.sorte);
-
         }
         
         function atualizaPagina(page){
@@ -315,7 +318,8 @@
                 $(".combate-container").css("display","none");
             }
         }
-             
+        
+        //MONITORA OPÇÃO ESCOLHIDA             
         $(document).on("click", ".questao", function(){
             var vapara = $(this).attr("data-destino");
             console.log(vapara);
@@ -323,12 +327,12 @@
             
         });
         
+        //LEGADO - RETIRAR
         function criaFicha(status){
             var indice = 1;
             $(".combate-container").css("display","flex");
             $(".combate-container .ficha-inimigo").css("display","none");
             $(".combate-container h1.token-turno").text("Crie seu personagem.");
-
             
             $("#area-sketch button").on('click',function(){                        
                 mesa_dados.limpaDados();
