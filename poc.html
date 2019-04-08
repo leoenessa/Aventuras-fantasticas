@@ -165,7 +165,7 @@
             });
 
             $("button.criar-personagem-botao-rolar-dado").on('click',function(){
-                var attr $(this).attr("data-origem");
+                var atributo = $(this).attr("data-origem");
 
                 $(".combate-container").css("display","flex");
                 $("#area-sketch button").on('click',function(){ 
@@ -174,7 +174,13 @@
                     mesa_dados.limpaTela();
                     mesa_dados.criaDados(2);
                     mesa_dados.rolaDado();                       
+                    $("span.attr_valor."+atributo).text(window.pipe);
+                    window.pipe = 0;
+                    $(".combate-container").css("display","none");
                 });
+                $(this).css("display","none");
+                
+                
 
             });
                         
