@@ -115,7 +115,7 @@
                 </ul>
 
                 <fieldset class="criar-personagem-magias">
-                    <legend> Escolha suas magias </legend>
+                    <legend> Escolha suas magias - Quantidade restante <span class="qtde-restante-magias"></span> </legend>
                     <div class="lista-magias">
                         
                     </div>
@@ -139,27 +139,25 @@
             pagina_start = 1;
             var teste;
 
+            populaMagias();
+
             //SELECIONAR PERSONAGEM
             $(".selecionar-personagem-classes-personagem .classe-personagem").mouseover(function(){
                 var tmp_class = $(this).attr("data-classe");
                 atualizaStatusSelPersonagem(tmp_class);
             });
-
             $(".selecionar-personagem-classes-personagem .classe-personagem").on('click',function(){
                 hero_status = personagens_status[$(this).attr("data-classe")];
                 $(".selecionar-personagem-container").css('display','none');
             });
-
             //TELA CRIAÇÃO PERSONAGEM
             $(".botao-criar-personagem").on('click',function(){
                 $(".selecionar-personagem-container").css("display","none");
                 $(".criar-personagem-container").css("display","block");
             });
-
             //LOGICA CRIAÇÃO PERSONAGEM
             $("button.criar-personagem-botao-rolar-dado").on('click',function(){
                 var atributo = $(this).attr("data-origem");
-
                 $(".combate-container").css("display","flex");
                 
                 $("#area-sketch button").on('click',function(){ 
@@ -168,7 +166,6 @@
                     mesa_dados.limpaTela();
                     mesa_dados.criaDados(2);
                     var num_rolado = mesa_dados.rolaDado();
-
                     if(atributo=='energia' || atributo=='habilidade'){
                         num_rolado+=12;
                     }
@@ -180,42 +177,41 @@
                     $(".combate-container").css("display","none");
                     atributo = null;
                     console.log("DENTRO DO COMBATE "+atributo);
-
                 });
                 $(this).css("display","none");
                 
             });
-
-            $("input[type=checkbox]").on('click',function(){
-                console.log("bip");
-                // if($(".item-magia:checked").length > 2){
-                //     this.checked = false;
-                // }
-
+            $(".item-magia").on('change',function(){
+                console.log(max_magias);
+                if($(".lista-magias input[type=checkbox]:checked").length > max_magias){
+                    $(this).prop('checked',false);
+                }
+                else{
+                    $(".qtde-restante-magias").text(max_magias);
+                }
             });
-
                         
             atualizaPagina(retornaPagina(pagina_start));
-            populaMagias();
         }),'jsonp';   
              
         function retornaPagina(page){
             return(livrocompleto.pagina[page-1]);
         }
-
         function populaMagias(){
+            $(".qtde-restante-magias").text(max_magias);
             var pai = $("fieldset.criar-personagem-magias .lista-magias");
             pai.empty();
                     
             for(i=0;i<livrocompleto.magias.length;i++){
-                var filho = "<div><input class='item-magia' type = 'checkbox' id = 'magia"+i+
-                            "' name = 'magia"+i+"' valor = '"+livrocompleto.magias[i]+"'>"+
-                            "<label for = 'magia"+i+"'>"+livrocompleto.magias[i]+"</label>"+
-                        "</div>";
+                var filho = "<div>"+
+                                "<input class='item-magia' type = 'checkbox' id = 'magia"+i+
+                                      "' name = 'magia"+i+"' valor = '"+livrocompleto.magias[i]+"'>"+
+                                "<label for = 'magia"+i+"'>"+livrocompleto.magias[i]+"</label>"+
+                            "</div>";
+                
                 pai.append(filho);
             }
         }
-
         function combate(irpara){
             mesa_dados.limpaDados();
             mesa_dados.limpaTela();
@@ -256,14 +252,12 @@
                 hero_turn = true;
             }
         }
-
         function atualizaStatusSelPersonagem(classe_personagem){
             $(".selecionar-personagem-imagem-classe .imagem-classe").attr("src","img/char_"+personagens_status[classe_personagem].nome+".jpg");
             $(".selecionar-personagem-atributo.energia .attr_valor").text(personagens_status[classe_personagem].energia);
             $(".selecionar-personagem-atributo.habilidade .attr_valor").text(personagens_status[classe_personagem].habilidade);
             $(".selecionar-personagem-atributo.sorte .attr_valor").text(personagens_status[classe_personagem].sorte);
         }
-
         function atualizaFichas(){
             $(".heroi-nome").text(hero_status.nome);
             $(".heroi-status .heroi-energia .box").text(hero_status.energia);
@@ -326,40 +320,6 @@
             atualizaPagina(retornaPagina(vapara));
             
         });
-        
-        //LEGADO - RETIRAR
-        function criaFicha(status){
-            var indice = 1;
-            $(".combate-container").css("display","flex");
-            $(".combate-container .ficha-inimigo").css("display","none");
-            $(".combate-container h1.token-turno").text("Crie seu personagem.");
-            
-            $("#area-sketch button").on('click',function(){                        
-                mesa_dados.limpaDados();
-                mesa_dados.limpaTela();
-                mesa_dados.criaDados(2);
-                switch(indice) {
-                    case 1:
-                        status.energia+=mesa_dados.rolaDado();
-                        indice++;
-                        break;
-                    case 2:
-                        status.habilidade+=mesa_dados.rolaDado();
-                        indice++;
-                        break;
-                    case 3:
-                        status.sorte+=mesa_dados.rolaDado();
-                        indice++;
-                        break;
-                    case 4:
-                        $("#area-sketch button").off('click');
-                        $(".combate-container").css("display","none");
-                        return true;
-                }
-                console.log(hero_status);
-            });
-        }
-        
     </script>
 </body>
 </html>

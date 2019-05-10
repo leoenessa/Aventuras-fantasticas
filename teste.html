@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aventuras Fantásticas - A Cidadela do Caos</title>
+   <script src="jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+    <fieldset class="tt">
+        <legend>Teste</legend>
+       <!--  <div>
+            <input type="checkbox" name="" class="item">
+            <label for="">Teste</label>
+        </div>
+        <div>
+            <input type="checkbox" name="" class="item">
+            <label for="">Teste</label>
+        </div>
+        <div>
+            <input type="checkbox" name="" class="item">
+            <label for="">Teste</label>
+        </div>
+        <div>
+            <input type="checkbox" name="" class="item">
+            <label for="">Teste</label>
+        </div> --> 
+    </fieldset>
+
+    <script type="text/javascript">
+
+        var pai = $("fieldset.tt");
+        pai.empty();
+
+        for(i=0;i<10;i++){
+            var filho = "<div><input type='checkbox' name='' class='item'><label for=''>Teste</label></div>"
+            pai.append(filho);
+        }
+
+        $(".item").on('change',function(){
+            if($('input[type=checkbox]:checked').length>2){
+                console.log("INNNN");
+                $(this).prop('checked',false);
+            }
+            console.log("BIP");
+        });
+    </script>
+</body>
+</html>
