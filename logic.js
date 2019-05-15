@@ -5,7 +5,7 @@ var hero_turn = true;
 var poder_ataque_hero = 0;
 var poder_ataque_enemy = 0;
 
-$.getJSON('https://api.myjson.com/bins/ut85k', function(data){
+$.getJSON('https://api.myjson.com/bins/k45nu', function(data){
     livrocompleto = data;
     pagina_start = 1;
     
@@ -198,16 +198,20 @@ function atualizaPagina(page){
     
     if(page.id)
     
-    if(page.questoes){
-        if(page.questoes.length>0){
-            var pai = $(".open-book .pagina-texto .opcoes");
+    if(page.opcoes){
+
+        if(page.opcoes.length>0){
+
+            $("p.questao").text(page.questao);
+
+            var pai = $(".open-book .pagina-texto .resposta");
             pai.empty();
             
-            for(i=0;i<page.questoes.length;i++){
+            for(i=0;i<page.opcoes.length;i++){
                 var filho = document.createElement('l1');
-                filho.className += "questao";
-                $(filho).attr("data-destino",page.questoes[i].destino);
-                filho.textContent = page.questoes[i].mensagem;
+                filho.className += "opcao";
+                $(filho).attr("data-destino",page.opcoes[i].destino);
+                filho.textContent = page.opcoes[i].mensagem;
                 pai.append(filho);
             }
         }

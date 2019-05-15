@@ -65,7 +65,11 @@ body{
     height: 100px;
 }
 
-.open-book .pagina-texto .opcoes .questao{
+.open-book .pagina-texto .questao{
+    font-weight: bold;
+}
+
+.open-book .pagina-texto .resposta .opcao{
     cursor: pointer;
     margin: 0;
     height: 100%;
@@ -276,6 +280,10 @@ body{
     border: 2px solid #000;
     z-index: 2;
     padding: 5px;
+}
+
+.item-magia{
+    z-index: 1000;
 }
 
 /*  -----------====================---------------*/

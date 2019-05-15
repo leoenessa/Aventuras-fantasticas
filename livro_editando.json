@@ -1,0 +1,399 @@
+{
+  "livro":"Cidadela do Caos",
+  "numero_paginas":"280",
+  "magias":["Cópia de criatura","Percepção extra-sensorial","Fogo","Ouro dos tolos","Ilusão","Levitação","Sorte","Escudo","Habilidade","Energia","Força","Fraqueza"],
+  "pagina":[
+    {
+      "id":"1",
+      "titulo":"",
+      "texto":"O sol se põe. Enquanto o crepúsculo se transforma em escuridão, você começa a subir a colina na direção da ameaçadora forma que se desenha contra o céu noturno. A Cidadela fica a menos de uma hora de escalada. A uma certa distância de seus muros, você pára para descansar - um erro, uma vez que, dessa posição, ela parece um espectro medonho do qual não se pode escapar. Os cabelos no seu pescoço se arrepiam enquanto você a observa. Mas você se envergonha de seus medos. Com inflexível decisão, você marcha adiante na direção do portão principal, onde você sabe que encontrará guardas à sua espera. Você considera suas opções.Já pensou em se apresentar como um especialista em plantas medicinais que veio tratar de um guarda com febre. Poderia também se dizer um comerciante ou artesão - talvez um carpinteiro. Poderia até mesmo ser um nômade que buscasse abrigo para a noite. Enquanto você pondera as possibilidades, e as histórias que terá que contar aos guardas, acaba chegando à trilha principal que conduz aos portões. Duas lanternas brilham em cada um dos lados da porta levadiça. Você ouve grunhidos abafados ao se aproximar, e vê duas criaturas de aparência absurda. Do lado esquerdo está uma criatura horrível, com a cabeça de um cachorro e o corpo de um grande macaco, flexionando seus braços fortíssimos. Do outro lado, encontra-se de fato o seu oposto, com a cabeça de um macaco no corpo de um cachorro grande. Este último guarda se aproxima nas suas quatro patas. Pára a alguns metros de distância diante de você, ergue-se sobre as patas traseiras e dirige a palavra a você.",
+      "imagem":"1.jpg",
+      "efeitos":"neve", 
+      "questao":" Por qual das histórias você optará?",
+      "opcoes":[
+        {
+          "mensagem":"Você se apresentará como um especialista em plantas medicinais?",
+          "destino":"261"
+        },
+        {
+          "mensagem":"Você dirá que é um comerciante?",
+          "destino":"230"
+        },
+        {
+          "mensagem":"Você pedirá abrigo para pernoitar?",
+          "destino":"20"
+        }
+      ]
+    },
+    
+    {
+      "id":"2",
+      "titulo":"",
+      "texto":"Um pouco adiante na passagem há uma porta do lado direito. Esta porta está coberta por estranhos caracteres, em uma linguagem que você não compreende.",
+      "imagem":"2.jpg",
+      "efeitos":"neve",
+      "questao":"",
+      "opcoes":[
+        {
+          "mensagem":"Você tentará abrir a porta.",
+          "destino":"142"
+        },
+        {
+          "mensagem":"ou continuará seguindo a passagem?",
+          "destino":"343"
+        }
+      ]
+    },
+    
+    {
+      "id":"3",
+      "titulo":"",
+      "texto":"",
+      "imagem":"3.jpg",
+      "efeitos":"neve",
+      "questao":"O que você oferecerá a eles?",
+      "opcoes":[
+        {
+          "mensagem":"Uma Miríade de Bolso?",
+          "destino":"327"
+        },
+        {
+          "mensagem":"Uma Aranha em um Vidro?",
+          "destino":"59"
+        },
+        {
+          "mensagem":"Um punhado de Pequenas Amoras?",
+          "destino":"236"
+        },
+        {
+          "mensagem":"Se você não puder oferecer nenhuma dessas coisas, poderá desembainhar a sua espada",
+          "destino":"286"
+        },
+        {
+          "mensagem":"ou se dirigir para a porta mais distante",
+          "destino":"366"
+        }
+      ]
+    },
+    
+    {
+      "id":"4",
+      "titulo":"",
+      "texto":"Você faz aparecer uma bola de fogo e a manda voando no rosto da criatura. Porém, fica assistindo desanimado ao vê-la ricochetear sem nenhum efeito!",
+      "imagem":"4.jpg",
+      "efeitos":"neve",
+      "questao":"",
+      "opcoes":[
+        {
+          "mensagem":"Você pode lançar rapidamente um Encanto de Cópia de Criatura",
+          "destino":"190"
+        },
+        {
+          "mensagem":"ou desembainhar a sua espada",
+          "destino":"303"
+        }
+      ]
+    },
+    
+    {
+      "id":"5",
+      "titulo":"",
+      "texto":"Você experimenta a maçaneta da porta e ela gira, abrindo para um outro corredor. Logo adiante, a passagem vira para a direita e termina pouco depois em outra porta. Nesta porta há um letreiro que diz 'Por Favor Toque a Campainha para Chamar o Mordomo'. Uma corda - evidentemente a campainha - pende ao lado da porta.",
+      "imagem":"5.jpg",
+      "efeitos":"neve",
+      "questao":"",
+      "opcoes":[
+        {
+          "mensagem":"Você toca a campainha conforme indicado.",
+          "destino":"40"
+        },
+        {
+          "mensagem":"ou experimenta a maçaneta da porta.",
+          "destino":"361"
+        }
+      ]
+    },
+    
+    {
+      "id":"6",
+      "titulo":"",
+      "texto":"o caminho segue ao longo do rio por vários metros e depois volta a penetrar na rocha. Você segue o caminho por algum tempo.",
+      "imagem":"2.jpg",
+      "efeitos":"neve",
+      "questao":"",
+      "opcoes":[
+        {
+          "mensagem":"Seguir...",
+          "destino":"367"
+        }
+      ]
+    },
+    
+    {
+      "id":"7",
+      "titulo":"",
+      "texto":"A porta está trancada.",
+      "imagem":"5.jpg",
+      "efeitos":"neve",
+      "questao":"",
+      "opcoes":[
+        {
+          "mensagem":"Você pode tentar pô-la abaixo, batendo nela com o ombro.",
+          "destino":"268"
+        },
+        {
+          "mensagem":"ou pode lançar um Encanto da Força sobre você mesmo e tentar arrancar a porta das suas dobradiças.",
+          "destino":"116"
+        }
+      ]
+    },
+    
+    {
+      "id":"8",
+      "titulo":"",
+      "texto":"Ela observa espantada o aparecimento de uma réplica perfeita dela mesma entre vocês dois. Ela recua um pouco, e você orienta a sua criação para o ataque. Mas, quando elas se aproximam uma da outra, acontece uma coisa estranha. Elas parecem ser incapazes de chegar perto uma da outra, como duas extremidades giratórias, e sempre separam-se bruscamente de um salto. Porém, sua própria cópia pelo menos forçou a criatura a se afastar de você para uma certa distância, permitindo que você corra para a entrada principal da Cidadela.",
+      "imagem":"5.jpg",
+      "efeitos":"neve",
+      "questao":"",
+      "opcoes":[
+        {
+          "mensagem":"Seguir...",
+          "destino":"218"
+        }
+      ]
+    },
+    
+    {
+      "id":"9",
+      "titulo":"",
+      "texto":"Sob o seu Encanto da Ilusão, a multidão de espectadores olha você começar a jogar. Você observa umas duas rodadas e a tensão cresce. Você resolve que é melhor sair do aposento sem mais perda de tempo.",
+      "imagem":"5.jpg",
+      "efeitos":"neve",
+      "questao":"",
+      "opcoes":[
+        {
+          "mensagem":"Seguir...",
+          "destino":"31"
+        }
+      ]
+    },
+    
+    {
+      "id":"10",
+      "titulo":"",
+      "texto":"Você tateia pela rocha e acaba por encontrar uma pequena alavanca. Ao puxar esta alavanca, a face da rocha esfarela um pouco e aparece uma pequena abertura. Você sobe por esta abertura e chega a uma passagem. Descendo a passagem para a esquerda, você pode ver uma porta e resolve investigar.",
+      "imagem":"5.jpg",
+      "efeitos":"neve",
+      "questao":"",
+      "opcoes":[
+        {
+          "mensagem":"Seguir...",
+          "destino":"249"
+        }
+      ]
+    },
+    
+    {
+      "id":"11",
+      "titulo":"",
+      "texto":"",
+      "imagem":"5.jpg",
+      "efeitos":"neve",
+      "questao":"Você pode usar:",
+      "opcoes":[
+        {
+          "mensagem":"Um Encanto do Ouro dos Tolos.",
+          "destino":"36",
+          "cmd":"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+        },
+        {
+          "mensagem":"Um Encanto de Cópia de Criatura.",
+          "destino":"262",
+          "cmd":"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+        },
+        {
+          "mensagem":"Um Encanto da Percepção Extra-Sensorial.",
+          "destino":"128",
+          "cmd":"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+        },
+        {
+          "mensagem":"Um Encanto da Fraqueza.",
+          "destino":"152",
+          "cmd":"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+        },
+        {
+          "mensagem":"Se você não tiver nenhum desses encantos, terá que desembainhar a sua espada e lutar.",
+          "destino":"16"
+        }
+      ]
+    },
+    
+    {
+      "id":"12",
+      "titulo":"",
+      "texto":"Ele fica parado diante de você, respirando pesadamente. O Encanto dele evidentemente foi bastante exaustivo.",
+      "imagem":"5.jpg",
+      "efeitos":"neve",
+      "questao":"Você pode usar essa oportunidade para:",
+      "opcoes":[
+        {
+          "mensagem":"Deslocar-se rapidamente para o armário das armas.",
+          "destino":"274"
+        },
+        {
+          "mensagem":"Pular para debaixo da mesa.",
+          "destino":"335"
+        },
+        {
+          "mensagem":"Correr para a janela.",
+          "destino":"78"
+        }
+      ]
+    },
+    
+    {
+      "id":"13",
+      "titulo":"",
+      "texto":"A maçaneta gira e você abre a porta para um outro aposento, onde há bastante atividade. Três velhas feias, com narizes e queixos compridos, circulam pelo aposento - que parece ser alguma espécie de cozinha - pegando vários ingredientes dos armários e acrescentando-os a um caldo dentro de um grande caldeirão. Há um pedaço de carne assando em um espeto, embaixo de uma grande chaminé. Olhando mais atentamente, você descobre que a carne, na verdade, não é de um animal, mas sim um Anão inteiro que escurece ao fogo. Uma das mulheres olha para você e diz: 'Ah, você deve ser o novo empregado...ou é a próxima refeição?', com o que todas as três começam a dar gargalhadas e gritos enquanto riem..",
+      "imagem":"13.jpg",
+      "efeitos":"neve",
+      "questao":"",
+      "opcoes":[
+        {
+          "mensagem":"Você deixará que elas acreditem que você é o novo empregado que elas estão esperando.",
+          "destino":"302"
+        },
+        {
+          "mensagem":"ou quer investigar o aposento com mais vagar.",
+          "destino":"215"
+        }
+      ]
+    },
+    
+    {
+      "id":"14",
+      "titulo":"",
+      "texto":"A sombra do muro dificulta muito a visão. Uma pedra solta desliza, e você perde o equilíbrio, oscilando à beira do que você tem consciência de que deve ser um poço profundo. Teste a sua Sorte. Se você tiver sorte, recupera o equilíbrio e caminha em segurança.",
+      "cmd":"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",
+      "imagem":"5.jpg",
+      "efeitos":"neve",
+      "questao":"",
+      "opcoes":[
+        {
+          "mensagem":"Você pode então dar a volta no poço e continuar.",
+          "destino":"79"
+        },
+        {
+          "mensagem":"Se você não tiver sorte, cai lá dentro",
+          "destino":"100"
+        }
+      ]
+    },
+    
+    {
+      "id":"15",
+      "titulo":"",
+      "texto":"A adaga é realmente uma obra de arte e sem dúvida valia um bom preço. A lâmina é feita de metal brilhante, e o cabo é de um couro verde peculiar, com pedras incrustadas. Você lê uma inscrição que diz que esta é uma adaga de arremesso encantada que nunca erra. Em um combate futuro, você poderá usar esta adaga para arremessar em um adversário. Ela causará automaticamente a perda de dois pontos de ENERGIA sem necessidade de jogar dados para conhecer a Força de Ataque. Mas você só poderá usá-la uma vez. Você põe a adaga em seu cinturão e parte na direção da Cidadela.",
+      "cmd":"%%%%%%%%%%%%%%%%%%%%%%%%%",
+      "imagem":"5.jpg",
+      "efeitos":"neve",
+      "questao":"",
+      "opcoes":[
+        {
+          "mensagem":"Seguir...",
+          "destino":"245"
+        }
+      ]
+    },
+    
+    {
+      "id":"16",
+      "titulo":"",
+      "texto":"Resolva esta batalha:",
+      "imagem":"5.jpg",
+      "efeitos":"neve",
+      "combate":"true",
+      "pos_combate":"180",
+      "cmd":"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",
+      "inimigos":[
+        {
+          "nome":"Gark",
+          "habilidade":"7",
+          "energia":"11"
+        }
+      ]
+    },
+    
+    {
+      "id":"17",
+      "titulo":"",
+      "texto":"Todo tipo de alimentos estranhos podem ser encontrados nos armários. Globos oculares, línguas, lagartixas, frascos de líquidos, ervas e frutos silvestres de diferentes formas e tamanhos. Uma garrafa em especial, contendo um líquido verde transparente, chama a sua atenção. Você não tem tempo para ler o rótulo no momento, por isso você a põe no bolso rapidamente, enquanto elas não estão olhando. Você lhes diz que a cozinha parece estar em ordem e sai pela porta do lado oposto da cozinha.",
+      "imagem":"5.jpg",
+      "efeitos":"neve",
+      "questao":"",
+      "opcoes":[
+        {
+          "mensagem":"Seguir...",
+          "destino":"93"
+        }
+      ]
+    },
+    
+    {
+      "id":"18",
+      "titulo":"",
+      "texto":"Ele aponta para uma seção logo acima do chão, que você examina. Finalmente, você escolhe um volume e senta para ler. Balthus Dire aparentemente é o terceiro de uma linhagem de Feiticeiros Senhores da Guerra que governa a Torre Negra e o Reino da Rocha Escarpada. Chegou ao poder depois da morte de seu pai, Craggen Dire, há alguns anos atrás. Os Dires são mestres de Magia Negra há gerações, mas sua força e poder duram somente no período noturno; a luz do sol é uma  espécie de veneno para eles. Pouco tempo depois da morte de seu pai, Balthus Dire casou-se com Lady Lucretia, ela também uma Feiticeira de Magia Negra, e desde então eles vem reinando juntos sobre o Reino da Rocha Escarpada. Ao terminar o livro, você repara que o bibliotecário está com a mão junto ao ouvido, aparentemente escutando alguma coisa. Ele dirige a você um olhar inquisitivo..",
+      "imagem":"5.jpg",
+      "efeitos":"neve",
+      "questao":"",
+      "opcoes":[
+        {
+          "mensagem":"Você pode procurar outro livro útil, que possa ajudá-lo na sua empreitada.",
+          "destino":"84"
+        },
+        {
+          "mensagem":"ou tentar sair da biblioteca pela porta atrás dele.",
+          "destino":"31"
+        }
+      ]
+    },
+    
+    {
+      "id":"19",
+      "titulo":"",
+      "texto":"A escada geme quando você põe o pé nela. Você tenta subir o mais silenciosamente possível, mas a madeira velha range sob o seu peso. De repente, um dos degraus estala, como se acionasse um dispositivo de algum tipo. Para sua surpresa, todos os degraus: viram para baixo! Você está agora de pé em uma rampa lisa e inclinadíssima! Por mais que você tente, não consegue manter o equilíbrio e acaba escorregando pela rampa, rolando de ponta cabeça.",      "imagem":"5.jpg",
+      "efeitos":"neve",
+      "questao":"",
+      "opcoes":[
+        {
+          "mensagem":"cabeça. Se você quiser usar um Encanto da Levitação, poderá voar e descer, fora de perigo, na sacada em cima",
+          "destino":"363",
+          "cmd":"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+        },
+        {
+          "mensagem":"do contrário...",
+          "destino":"254"
+        }
+      ]
+    },
+    
+    {
+      "id":"20",
+      "titulo":"",
+      "texto":"O Macaco-Cachorro diz que não é permitido a ninguém entrar na Torre Negra depois que anoitece -você terá que procurar abrigo em outro lugar.",
+      "imagem":"5.jpg",
+      "efeitos":"neve",
+      "questao":"",
+      "opcoes":[
+        {
+          "mensagem":"Você pode se resignar a lutar",
+          "destino":"288"
+        },
+        {
+          "mensagem":"Ou pode pegar uma pedra e lançar um Encanto do Ouro dos Tolos sobre ela, oferecendo-a como uma pepita de ouro, para suborná-los, convencendo-os a deixar você entrar.",
+          "destino":"96"
+        }
+      ]
+    }
+  ]
+}
