@@ -74,6 +74,12 @@ body{
     margin: 0;
     height: 100%;
     z-index: 2;
+    display: block;
+}
+
+.desabilitado{
+    cursor: not-allowed !important;
+    opacity: 0.5;
 }
 
 .area-img{

@@ -5,7 +5,8 @@ var hero_turn = true;
 var poder_ataque_hero = 0;
 var poder_ataque_enemy = 0;
 
-$.getJSON('https://api.myjson.com/bins/k45nu', function(data){
+// $.getJSON('https://api.myjson.com/bins/k45nu', function(data){ Livro com destinos sequenciais
+    $.getJSON('https://api.myjson.com/bins/15t0ru', function(data){ //COMPLETO
     livrocompleto = data;
     pagina_start = 1;
     
@@ -114,6 +115,32 @@ $.getJSON('https://api.myjson.com/bins/k45nu', function(data){
     atualizaPagina(retornaPagina(pagina_start));
 }),'jsonp';   
      
+//Recebe e checa condição de habilitação de opção da página
+function checaCondicao(condicao){
+    let cond = condicao.split("%");
+    let passou = false;
+
+    switch(cond[1]){ //COMANDO
+        case 'p': //Possuir
+            switch(cond[2]){
+                case 'm': //Magia
+                    let magia = cond[3];
+                    if(hero_status.magias[magia]>0) passou=true;
+                    break;
+            }
+            break;
+        default:
+            console.log("Condição não cadastrada");
+            break;
+    }
+
+    return passou;
+}     
+
+function executaComando(comando){
+    console.log(comando);
+}
+
 function retornaPagina(page){
     return(livrocompleto.pagina[page-1]);
 }
@@ -125,7 +152,7 @@ function populaMagias(){
     for(i=0;i<livrocompleto.magias.length;i++){
         var filho = "<div>"+
                         "<label for = 'magia"+i+"'>"+livrocompleto.magias[i]+"</label>"+
-                        "<input  type='number' class='item-magia'id = 'magia"+i+
+                        "<input  type='number' class='item-magia' id = '"+i+
                               "' name = 'magia"+i+"' value = '"+livrocompleto.magias[i]+"'>"+
                         "<button class='btn_up'>+</button><button class='btn_down'>-</button>"
                     "</div>";
@@ -182,6 +209,7 @@ function atualizaStatusSelPersonagem(classe_personagem){
     $(".selecionar-personagem-atributo.sorte .attr_valor").text(personagens_status[classe_personagem].sorte);
     $(".selecionar-personagem-atributo.magia .attr_valor").text(personagens_status[classe_personagem].magia);
 }
+
 function atualizaFichas(){
     $(".heroi-nome").text(hero_status.nome);
     $(".heroi-status .heroi-energia .box").text(hero_status.energia);
@@ -195,9 +223,7 @@ function atualizaFichas(){
 
 function atualizaPagina(page){
     $(".texto").text(page.texto);
-    
-    if(page.id)
-    
+     
     if(page.opcoes){
 
         if(page.opcoes.length>0){
@@ -210,10 +236,25 @@ function atualizaPagina(page){
             for(i=0;i<page.opcoes.length;i++){
                 var filho = document.createElement('l1');
                 filho.className += "opcao";
+
+                if(page.opcoes[i].condicao){
+                    console.log("VEJAMOS: "+page.opcoes[i].condicao);    
+                    if(checaCondicao(page.opcoes[i].condicao)){}else{
+                        filho.className += " desabilitado";
+                    }
+                }
+                
+                
                 $(filho).attr("data-destino",page.opcoes[i].destino);
+                
+                if(page.opcoes[i].cmd){
+                    console.log("DENTRO DO PAGE OPCOES");
+                    $(filho).attr("data-cmd",page.opcoes[i].cmd);
+                }
                 filho.textContent = page.opcoes[i].mensagem;
                 pai.append(filho);
             }
+
         }
     }
     
@@ -243,10 +284,20 @@ function atualizaPagina(page){
     }
 }
 
-//MONITORA OPÇÃO ESCOLHIDA             
-$(document).on("click", ".questao", function(){
-    var vapara = $(this).attr("data-destino");
-    console.log(vapara);
-    atualizaPagina(retornaPagina(vapara));
+//Listener de click das opções das páginas             
+$(document).on("click", ".opcao", function(){
     
+    if($(this).hasClass("desabilitado")){
+        event.preventDefault();
+    }else{
+        pagina_start++;
+        if($(this).attr("data-cmd")){
+            executaComando($(this).attr("data-cmd"));    
+        }        
+        atualizaPagina(retornaPagina(pagina_start));
+        // var vapara = $(this).attr("data-destino");
+        // console.log(vapara);
+        // atualizaPagina(retornaPagina(vapara));
+    }
+      
 });
