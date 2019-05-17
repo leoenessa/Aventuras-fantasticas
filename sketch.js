@@ -159,9 +159,6 @@ var sketch2 = function(p){
                 p.clear();
             }
         }
-        
-        
-        
     };
     
     p.hit = function(type){

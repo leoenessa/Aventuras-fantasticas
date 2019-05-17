@@ -6,7 +6,7 @@ var poder_ataque_hero = 0;
 var poder_ataque_enemy = 0;
 
 // $.getJSON('https://api.myjson.com/bins/k45nu', function(data){ Livro com destinos sequenciais
-    $.getJSON('https://api.myjson.com/bins/15t0ru', function(data){ //COMPLETO
+    $.getJSON('https://api.myjson.com/bins/1c5iuq', function(data){ //COMPLETO
     livrocompleto = data;
     pagina_start = 1;
     
@@ -27,6 +27,7 @@ var poder_ataque_enemy = 0;
     });
 
     //=============TELA CRIAÇÃO PERSONAGEM
+
     let temp_qtde_magias = 0;
     //Habilita a tela de criação de personagem
     $(".botao-criar-personagem").on('click',function(){
@@ -97,9 +98,29 @@ var poder_ataque_enemy = 0;
             $(".combate-container").css("display","none");
             atributo = null;
         });
-        $(this).css("display","none");
-        
+        $(this).css("display","none"); 
     });
+
+    //Botao realizar teste para condição do texto
+    $("p.teste").on('click',function(){
+        var atributo = $(this).attr("data-origem");
+        $(".combate-container").css("display","flex");
+        
+        $("#area-sketch button").on('click',function(){ 
+           
+            mesa_dados.limpaDados();
+            mesa_dados.limpaTela();
+            mesa_dados.criaDados(2);
+            var num_rolado = mesa_dados.rolaDado();
+            
+            
+            $(".criar-personagem-atributo span.attr_valor."+atributo).text(num_rolado);
+            $(".combate-container").css("display","none");
+            atributo = null;
+        });
+        $(this).css("display","none"); 
+    });    
+
 
     //Usado quando as magias eram checkboxes
     // $(".item-magia").on('change',function(){
@@ -120,7 +141,7 @@ function checaCondicao(condicao){
     let cond = condicao.split("%");
     let passou = false;
 
-    switch(cond[1]){ //COMANDO
+    switch(cond[1]){ //Condição
         case 'p': //Possuir
             switch(cond[2]){
                 case 'm': //Magia
@@ -137,8 +158,28 @@ function checaCondicao(condicao){
     return passou;
 }     
 
+function subtraiMagia(magia,qtde){
+    if(hero_status.magias[magia]>0){
+        hero_status.magias[magia]-=qtde;
+    }
+}
+
 function executaComando(comando){
     console.log(comando);
+    let cmd = comando.split("%");
+
+    switch(cmd[1]){//Comando
+        case 's': //Subtrair
+            switch(cmd[2]){
+                case 'm':
+                    subtraiMagia(cmd[3],cmd[4]);
+                    break;
+            }
+            break;
+        default:
+            console.log("Comando não cadastrado");
+            break;
+    }
 }
 
 function retornaPagina(page){
@@ -246,9 +287,7 @@ function atualizaPagina(page){
                 
                 
                 $(filho).attr("data-destino",page.opcoes[i].destino);
-                
                 if(page.opcoes[i].cmd){
-                    console.log("DENTRO DO PAGE OPCOES");
                     $(filho).attr("data-cmd",page.opcoes[i].cmd);
                 }
                 filho.textContent = page.opcoes[i].mensagem;
@@ -281,6 +320,11 @@ function atualizaPagina(page){
     }
     else{
         $(".combate-container").css("display","none");
+    }
+
+    if(page.teste){
+        $(".teste").css('display','block');
+        $("p.teste").attr("data-teste",page.teste);
     }
 }
 
