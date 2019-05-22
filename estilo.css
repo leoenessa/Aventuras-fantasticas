@@ -536,6 +536,7 @@ canvas.tela-efeitos{
     .open-book {
         margin: 1em;
         position: relative;
+        min-height: 810px;
     }
 
     .open-book:before {

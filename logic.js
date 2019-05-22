@@ -6,7 +6,7 @@ var poder_ataque_hero = 0;
 var poder_ataque_enemy = 0;
 
 // $.getJSON('https://api.myjson.com/bins/k45nu', function(data){ Livro com destinos sequenciais
-    $.getJSON('https://api.myjson.com/bins/1c5iuq', function(data){ //COMPLETO
+    $.getJSON('https://api.myjson.com/bins/1gsw64', function(data){ //COMPLETO
     livrocompleto = data;
     pagina_start = 1;
     
@@ -103,6 +103,8 @@ var poder_ataque_enemy = 0;
 
     //Botao realizar teste para condição do texto
     $("p.teste").on('click',function(){
+        var num_rolado = 0;
+        var teste = $(this).attr("data-teste");
         var atributo = $(this).attr("data-origem");
         $(".combate-container").css("display","flex");
         
@@ -111,14 +113,26 @@ var poder_ataque_enemy = 0;
             mesa_dados.limpaDados();
             mesa_dados.limpaTela();
             mesa_dados.criaDados(2);
-            var num_rolado = mesa_dados.rolaDado();
-            
-            
-            $(".criar-personagem-atributo span.attr_valor."+atributo).text(num_rolado);
+            num_rolado = mesa_dados.rolaDado();
+            console.log(num_rolado);
+            if(realizaTeste(teste,num_rolado)){
+                $('ul.resposta .opcao').attr("data-sucesso", function(id,valor){
+                    if(valor=="true"){
+                        $(this).removeClass("desabilitado");
+                    }
+                });
+            }else{
+                $('ul.resposta .opcao').attr("data-sucesso", function(id,valor){
+                    if(valor=="false"){
+                        $(this).removeClass("desabilitado");
+                    }
+                });
+            }
             $(".combate-container").css("display","none");
-            atributo = null;
+            $("p.teste").css("display","none");
+            
         });
-        $(this).css("display","none"); 
+        
     });    
 
 
@@ -156,7 +170,28 @@ function checaCondicao(condicao){
     }
 
     return passou;
-}     
+}   
+
+function realizaTeste(teste_str,numero_rolado){
+    let teste = teste_str.split("%");
+    let passou = false;
+
+    switch(teste[1]){ //Condição
+        case 't': //Testar
+            switch(teste[2]){
+                case 's': //sorte
+                    if(numero_rolado<=hero_status.sorte){passou=true;}
+                    hero_status.sorte--;
+                    break;
+            }
+            break;
+        default:
+            console.log("Teste não cadastrado");
+            break;
+    }
+    console.log("Passou:"+passou);
+    return passou;
+}  
 
 function subtraiMagia(magia,qtde){
     if(hero_status.magias[magia]>0){
@@ -278,12 +313,19 @@ function atualizaPagina(page){
                 var filho = document.createElement('l1');
                 filho.className += "opcao";
 
-                if(page.opcoes[i].condicao){
+                if(page.teste){
+                    filho.className += " desabilitado";                    
+                    $(filho).attr('data-sucesso',page.opcoes[i].resultado_teste);
+                }else{
+                    if(page.opcoes[i].condicao){
                     console.log("VEJAMOS: "+page.opcoes[i].condicao);    
-                    if(checaCondicao(page.opcoes[i].condicao)){}else{
-                        filho.className += " desabilitado";
-                    }
+                        if(checaCondicao(page.opcoes[i].condicao)){}else{
+                            filho.className += " desabilitado";
+
+                        }
+                    }    
                 }
+                
                 
                 
                 $(filho).attr("data-destino",page.opcoes[i].destino);
@@ -323,8 +365,11 @@ function atualizaPagina(page){
     }
 
     if(page.teste){
+        
         $(".teste").css('display','block');
         $("p.teste").attr("data-teste",page.teste);
+
+
     }
 }
 

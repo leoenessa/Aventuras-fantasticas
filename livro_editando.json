@@ -290,11 +290,12 @@
         {
           "mensagem":"Você pode então dar a volta no poço e continuar.",
           "destino":"79",
-          "condicao":"%t%1"
+          "resultado_teste":true
         },
         {
           "mensagem":"Se você não tiver sorte, cai lá dentro",
-          "destino":"100"
+          "destino":"100",
+          "resultado_teste":false
         }
       ]
     },
