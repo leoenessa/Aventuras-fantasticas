@@ -1,7 +1,70 @@
 {
   "livro":"Cidadela do Caos",
   "numero_paginas":"280",
-  "magias":["Cópia de criatura","Percepção extra-sensorial","Fogo","Ouro dos tolos","Ilusão","Levitação","Sorte","Escudo","Habilidade","Energia","Força","Fraqueza"],
+
+  "magias":[
+    {
+      "id":"0",
+      "nome":"Cópia de criatura",
+      "efeito":"%c%c"
+    },
+    {
+      "id":"1",
+      "nome":"Percepção extra-sensorial",
+      "efeito":"%c%c"
+    },
+    {
+      "id":"2",
+      "nome":"Fogo",
+      "efeito":"%c%c"
+    },
+    {
+      "id":"3",
+      "nome":"Ouro dos tolos",
+      "efeito":"%c%c"
+    },
+    {
+      "id":"4",
+      "nome":"Ilusão",
+      "efeito":"%c%c"
+    },
+    {
+      "id":"5",
+      "nome":"Levitação",
+      "efeito":"%c%c"
+    },
+    {
+      "id":"6",
+      "nome":"Sorte",
+      "efeito":"%c%c"
+    },
+    {
+      "id":"7",
+      "nome":"Escudo",
+      "efeito":"%c%c"
+    },
+    {
+      "id":"8",
+      "nome":"Habilidade",
+      "efeito":"%c%c"
+    },
+    {
+      "id":"9",
+      "nome":"Energia",
+      "efeito":"%c%c"
+    },
+    {
+      "id":"10",
+      "nome":"Força",
+      "efeito":"%c%c"
+    },
+    {
+      "id":"11",
+      "nome":"Fraqueza",
+      "efeito":"%c%c"
+    }
+  ],
+    
   "pagina":[
     {
       "id":"1",

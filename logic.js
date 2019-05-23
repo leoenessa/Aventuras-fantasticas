@@ -1,12 +1,15 @@
 var hero_status = {nome:"Alucard",energia:0,habilidade:0,sorte:0,magia:0, magias:[]};
 var enemy_status = {nome:"Cerberus",energia:12,habilidade:8,sorte:6};
-var personagens_status = [ guerreiro_status = {nome:"Guerreiro", energia:24, habilidade:10, sorte:7}, mago_status = {nome:"Mago", energia:15, habilidade:7, sorte:11}, clerigo_status = {nome:"Clérigo", energia:19, habilidade:9, sorte:9}];
+var personagens_status = [ guerreiro_status = {nome:"Guerreiro", energia:24, habilidade:10, sorte:7,magias:["1","1","1","1"]}, 
+                           mago_status = {nome:"Mago", energia:15, habilidade:7, sorte:11,magias:["1","1","1","1"]}, 
+                           clerigo_status = {nome:"Clérigo", energia:19, habilidade:9, sorte:9,magias:["1","1","1","1"]}
+                           ];
 var hero_turn = true;
 var poder_ataque_hero = 0;
 var poder_ataque_enemy = 0;
 
 // $.getJSON('https://api.myjson.com/bins/k45nu', function(data){ Livro com destinos sequenciais
-    $.getJSON('https://api.myjson.com/bins/1gsw64', function(data){ //COMPLETO
+    $.getJSON('https://api.myjson.com/bins/wlhr0', function(data){ //COMPLETO
     livrocompleto = data;
     pagina_start = 1;
     
@@ -226,10 +229,11 @@ function populaMagias(){
     pai.empty();
             
     for(i=0;i<livrocompleto.magias.length;i++){
+        console.log(livrocompleto.magias[i].nome);
         var filho = "<div>"+
-                        "<label for = 'magia"+i+"'>"+livrocompleto.magias[i]+"</label>"+
+                        "<label for = 'magia"+i+"'>"+livrocompleto.magias[i].nome+"</label>"+
                         "<input  type='number' class='item-magia' id = '"+i+
-                              "' name = 'magia"+i+"' value = '"+livrocompleto.magias[i]+"'>"+
+                              "' name = 'magia"+i+"' value = '"+livrocompleto.magias[i].nome+"'>"+
                         "<button class='btn_up'>+</button><button class='btn_down'>-</button>"
                     "</div>";
         
@@ -287,6 +291,8 @@ function atualizaStatusSelPersonagem(classe_personagem){
 }
 
 function atualizaFichas(){
+    console.log("function atualizaFichas");
+
     $(".heroi-nome").text(hero_status.nome);
     $(".heroi-status .heroi-energia .box").text(hero_status.energia);
     $(".heroi-status .heroi-habilidade .box").text(hero_status.habilidade);
@@ -295,6 +301,23 @@ function atualizaFichas(){
     $(".inimigo-status .inimigo-energia .box").text(enemy_status.energia);
     $(".inimigo-status .inimigo-habilidade .box").text(enemy_status.habilidade);
     $(".inimigo-status .inimigo-sorte .box").text(enemy_status.sorte);
+
+    //Pópula Lista de magias
+    let pai = $("ul.heroi-magias");
+    pai.empty();
+
+    for(let i=0;i<hero_status.magias.length;i++){
+        let filho = document.createElement('l1');
+        filho.className += "magia";
+
+        $(filho).attr('data-id',i);
+        
+        $(filho).text(hero_status.magias[i].nome);
+        pai.append(filho);
+    }
+
+
+
 }
 
 function atualizaPagina(page){
@@ -351,6 +374,7 @@ function atualizaPagina(page){
         $(".combate-container").css("display","flex");
         atualizaFichas();
 
+        $("#area-sketch button").off();
         $("#area-sketch button").on('click',function(){   
            // mesa_dados.limpaDados();
            // mesa_dados.limpaTela();
