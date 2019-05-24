@@ -1,3 +1,5 @@
+MOMENTO_COMBATE = "c";
+
 var hero_status = {nome:"Alucard",energia:0,habilidade:0,sorte:0,magia:0, magias:[]};
 var enemy_status = {nome:"Cerberus",energia:12,habilidade:8,sorte:6};
 var personagens_status = [ guerreiro_status = {nome:"Guerreiro", energia:24, habilidade:10, sorte:7,magias:["1","1","1","1"]}, 
@@ -7,11 +9,12 @@ var personagens_status = [ guerreiro_status = {nome:"Guerreiro", energia:24, hab
 var hero_turn = true;
 var poder_ataque_hero = 0;
 var poder_ataque_enemy = 0;
+var turno = 1;
 
 // $.getJSON('https://api.myjson.com/bins/k45nu', function(data){ Livro com destinos sequenciais
-    $.getJSON('https://api.myjson.com/bins/wlhr0', function(data){ //COMPLETO
+    $.getJSON('https://api.myjson.com/bins/1d157k', function(data){ //COMPLETO
     livrocompleto = data;
-    pagina_start = 1;
+    pagina_start = 15;
     
     populaMagias();
 
@@ -241,7 +244,83 @@ function populaMagias(){
     }
 }
 
+
 function combate(irpara){
+    mesa_dados.limpaDados();
+    mesa_dados.limpaTela();
+    
+    if(hero_turn){
+        if(hero_status.energia>0 && enemy_status.energia>0){
+            mesa_dados.criaDados(2);
+            poder_ataque_hero = mesa_dados.rolaDado();
+            hero_turn = false;
+            combate();
+        }
+        else{
+            console.log("ACABOU A LUTA");
+            $(".combate-container").css("display","none");
+            atualizaPagina(irpara);
+            hero_turn = true;
+            enemy_status.energia=12;
+            return true;
+        }    
+    }
+    else{
+        mesa_dados.criaDados(2);
+        poder_ataque_enemy = mesa_dados.rolaDado();
+        if(poder_ataque_hero>poder_ataque_enemy){
+            console.log("HERÓI");
+            enemy_status.energia-=2;
+            atualizaFichas();
+        }
+        else{
+            console.log("MONSTRO");
+            hero_status.energia-=2;
+            $("canvas.tela-efeitos").css("z-index",2);
+            tela_efeitos.hit();
+            $("canvas.tela-efeitos").css("z-index",0);
+            atualizaFichas();
+        }
+        console.log("Vida HERÓI:"+hero_status.energia+"\nVida MONSTRO:"+enemy_status.energia);
+        hero_turn = true;
+    }
+}
+
+function combate2(irpara){
+
+    //Exibe Mensagem de escolha magia
+        if(turno==1){
+            console.log("Lançar magia?");
+            $(".btn-next").on('click',function(){
+                if(turno==5){turno=1;}
+                else{turno++;}
+            });
+
+            $("ul.heroi-magias li.magia").on('click',function(){
+                $(this).attr('data-id');
+            });
+        }else if(turno==2){
+
+        }else if(turno==3){
+        }else if(turno==4){
+        }else if(turno==5){
+        }
+        else{console.log("Erro - Turno de combate inválido");}
+    //Incrementa turno
+    //if turno2 
+    // Rodada dados
+    //Incrementa turno
+    //if turno3 
+    //Sorte?
+    // Rodada dados
+    //Incrementa turno
+    //if turno4
+    //Aplica danos
+    //testa fim da batalha
+    //if turno5
+    //possibilita fuga?
+    //fugir
+    //Incrementa turno = 1
     mesa_dados.limpaDados();
     mesa_dados.limpaTela();
     
@@ -290,6 +369,17 @@ function atualizaStatusSelPersonagem(classe_personagem){
     $(".selecionar-personagem-atributo.magia .attr_valor").text(personagens_status[classe_personagem].magia);
 }
 
+function magiaeCombate(id){
+    let status = livrocompleto.magias[id].efeito;
+    let cmd = status.split('%')[1]; //busca posicao 1 do efeito que contem momento de lançamento
+    cmd = cmd.split(","); 
+    if(cmd.indexOf(MOMENTO_COMBATE) != -1){
+        return true;
+    }
+
+    return false;
+}
+
 function atualizaFichas(){
     console.log("function atualizaFichas");
 
@@ -310,14 +400,18 @@ function atualizaFichas(){
         let filho = document.createElement('l1');
         filho.className += "magia";
 
-        $(filho).attr('data-id',i);
+        if(magiaeCombate(i)){
+            if(hero_status.magias[i] == 0){
+                filho.className += " consumida";
+            }
+
+            $(filho).attr('data-id',i);
+            filho.textContent = livrocompleto.magias[i].nome;
+            pai.append(filho);
+        }
+
         
-        $(filho).text(hero_status.magias[i].nome);
-        pai.append(filho);
     }
-
-
-
 }
 
 function atualizaPagina(page){

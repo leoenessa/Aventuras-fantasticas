@@ -114,6 +114,46 @@ body{
     left: 5%;
     right: 5%;
     z-index: 3;
+    flex-direction: column;
+
+}
+
+.combate-container *{
+    outline: 1px solid red;
+}
+
+.combate-container .topo{
+    width: 100%;
+}
+
+.combate-container .topo ul.letreiro-turno{
+    list-style: none;
+    text-align: center;
+    font-size: 2em;
+    margin: 20px;
+}
+
+.combate-container .topo ul.letreiro-turno li{
+    display: inline-block;
+    border: 2px solid #000;
+    min-height: 2em;
+    min-width: 2em;
+    border-radius: 60%;
+    padding: 0.3em;
+    background-color: #960a0a;
+    cursor: pointer;
+    margin: 0;
+}
+
+.combate-container .topo ul.letreiro-turno li.turno-atual{
+    background-color: #037a01;   
+}
+
+.combate-container .topo .area-btn-next{
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+
 }
 
 .combate-container h1{
@@ -326,6 +366,17 @@ body {
     float: left;
     padding: 1em;
     width: 100%;
+}
+
+ul.heroi-magias .magia{
+    display: block;
+    cursor: pointer;
+}
+
+ul.heroi-magias .consumida{
+    text-decoration: line-through;
+    cursor: not-allowed !important;
+    opacity: 0.8;
 }
 
 
