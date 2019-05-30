@@ -129,7 +129,7 @@ body{
 .combate-container .topo ul.letreiro-turno{
     list-style: none;
     text-align: center;
-    font-size: 2em;
+    font-size: 1.5em;
     margin: 20px;
 }
 
@@ -149,6 +149,12 @@ body{
     background-color: #037a01;   
 }
 
+.combate-container .topo .descricao-turno{
+    text-transform: uppercase;
+    text-align: center;
+    color: #000;
+}
+
 .combate-container .topo .area-btn-next{
     text-align: center;
     text-transform: uppercase;
@@ -165,9 +171,12 @@ body{
     color: #000;
 }
 
-.combate-container .div{
-    width: 33%;
+.combate-container .mid{
+    width: 90%;
+    margin: auto;
+    display: flex;
 }
+
 
 .combate-container .ficha-heroi ul,
 .combate-container .ficha-inimigo ul{
@@ -216,7 +225,7 @@ body{
 }
 
 .combate-container #area-sketch button{
-
+    display: none;
 }
 
 .selecionar-personagem-container{
