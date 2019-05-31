@@ -386,6 +386,9 @@ function combate3(){
     var poder_ataque_hero = 0;
     var poder_ataque_enemy = 0;
     var monstro_ganhando = false;
+    var sorte_check = 0;
+    var venceu = false;
+    var gameover = false;
 
     return{
         proximo:function(){
@@ -400,6 +403,7 @@ function combate3(){
                     // $("btn-next").trigger("click");
                 });
                 turno++;
+                console.log(turno);
             }else if(turno==2){
                 console.log(turno);   
 
@@ -410,14 +414,18 @@ function combate3(){
                 $("#area-sketch button").on('click',function(){   
                     mesa_dados.criaDados(2);
                     poder_ataque_hero = mesa_dados.rolaDado();
+                    turno++;
                     // $("btn-next").trigger("click");
+                    $("#area-sketch button").css('display','none');
                 });  
-                turno++;                 
+                                 
             }else if(turno==3){
                 console.log(turno);   
 
                 console.log("BATALHA MONSTRO");
                 
+                mesa_dados.limpaDados();
+                mesa_dados.limpaTela();
                 mesa_dados.criaDados(2);
                 poder_ataque_enemy = mesa_dados.rolaDado();
 
@@ -433,12 +441,61 @@ function combate3(){
                     tela_efeitos.hit();
                     $("canvas.tela-efeitos").css("z-index",0);
                 }
+                turno++;
 
                 // $("btn-next").trigger("click");             
+            }else if(turno==4){
+                if(monstro_ganhando){
+                    console.log(turno);   
+
+                    console.log("LANÇAR SORTE");
+                
+                    mesa_dados.limpaDados();
+                    mesa_dados.limpaTela();
+                    
+                    $("#area-sketch button").css('display','block');
+                    
+                    $("#area-sketch button").on('click',function(){   
+                        mesa_dados.criaDados(2);
+                        sorte_check = mesa_dados.rolaDado();
+                        
+                        $("#area-sketch button").css('display','none');
+                        console.log(sorte_check);
+                    });  
+                    
+                    
+                    
+                    if(sorte_check<=hero_status.sorte){
+                        hero_status.energia--;
+                        hero_status.sorte--;
+                    }
+                    else{
+                        hero_status.energia-=2;
+                        if(hero_status.sorte>0){
+                            hero_status.sorte--;
+                        }
+                    }  
+                    poder_ataque_enemy = poder_ataque_hero = sorte_check = 0;
+                    monstro_ganhando = false;
+                    turno++;
+                }
+                else{
+                    turno++;
+                    poder_ataque_enemy = poder_ataque_hero = sorte_check = 0;
+                    monstro_ganhando = false;
+                    $("btn-next").trigger("click");                 
+                }
+                
+            }
+            else if(turno==5){
+                console.log("Fugir?");
+                if(enemy_status.energia<=0){venceu=true;}
+                if(hero_status.energia<=0){gameover=true;}
+            }   
             }
         }
     };
-}
+
 
 function atualizaStatusSelPersonagem(classe_personagem){
     $(".selecionar-personagem-imagem-classe .imagem-classe").attr("src","img/char_"+personagens_status[classe_personagem].nome+".jpg");
