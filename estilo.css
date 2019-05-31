@@ -145,8 +145,8 @@ body{
     margin: 0;
 }
 
-.combate-container .topo ul.letreiro-turno li.turno-atual{
-    background-color: #037a01;   
+.turno-atual{
+    background-color: #037a01 !important;   
 }
 
 .combate-container .topo .descricao-turno{

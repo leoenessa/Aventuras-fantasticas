@@ -390,6 +390,12 @@ function combate3(){
     var venceu = false;
     var gameover = false;
 
+    function atualizaIndicesTurno(){
+        let turno_anterior = turno-1
+        $("ul.letreiro-turno li:nth-child("+turno_anterior+")").removeClass("turno-atual");
+        $("ul.letreiro-turno li:nth-child("+turno+")").addClass("turno-atual");
+    }
+
     return{
         proximo:function(){
             if(turno==1){
@@ -408,6 +414,11 @@ function combate3(){
                 console.log(turno);   
 
                 console.log("BATALHA HEROI");
+
+                atualizaIndicesTurno();
+
+                $(".descricao-turno").text("Lançar dado poder de ataque herói");
+
                 $("#area-sketch button").css('display','block');
                 $("#area-sketch button").off();
 
@@ -424,6 +435,8 @@ function combate3(){
 
                 console.log("BATALHA MONSTRO");
                 
+                atualizaIndicesTurno();
+
                 mesa_dados.limpaDados();
                 mesa_dados.limpaTela();
                 mesa_dados.criaDados(2);
@@ -445,9 +458,11 @@ function combate3(){
 
                 // $("btn-next").trigger("click");             
             }else if(turno==4){
+
+                atualizaIndicesTurno();
+
                 if(monstro_ganhando){
                     console.log(turno);   
-
                     console.log("LANÇAR SORTE");
                 
                     mesa_dados.limpaDados();
@@ -489,6 +504,7 @@ function combate3(){
             }
             else if(turno==5){
                 console.log("Fugir?");
+                atualizaIndicesTurno();
                 if(enemy_status.energia<=0){venceu=true;}
                 if(hero_status.energia<=0){gameover=true;}
             }   
@@ -605,6 +621,7 @@ function atualizaPagina(page){
         atualizaFichas();
 
         var nextTurn = combate3();
+        nextTurn.proximo();
 
         $(".btn-next").on('click',function(){
             nextTurn.proximo();
